@@ -7,7 +7,7 @@
     <!------------------------ conteudo ------------------------>
     <div class="col-11 mx-auto mt-5">
         <!-- begin form -->
-        <form action="<?php echo site_url('rh/funcionario/guardar')?>" method="POST">
+        <form action="<?php echo site_url('rh/funcionario/guardar_novo_funcionario')?>" method="POST">
             <fieldset>
                 <div class="row">
                     <div class="form-group col-6">
