@@ -246,8 +246,8 @@ $(document).ready(function() {
     rules: {
       nome_user: {
         required: true,
-        minlength: 2,
-        minWords: 2
+        minlength: 3,
+        // minWords: 2
       },
       password: {
         required: true,
