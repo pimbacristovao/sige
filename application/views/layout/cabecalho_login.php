@@ -23,6 +23,7 @@
     <link href="<?= base_url(); ?>_assets/css/apple/theme/default.css" rel="stylesheet" id="theme" />
     <!-- ================== END BASE CSS STYLE ================== -->
     <link href="<?= base_url(); ?>_assets/css/default/my_style.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>_assets/css/default/style_link_recovery_pass.css" rel="stylesheet" />
 
     <!-- ================== BEGIN BASE JS ================== -->
     <!-- <script src="<?= base_url(); ?>_assets/plugins/pace/pace.min.js" type="text/javascript"></script> -->
