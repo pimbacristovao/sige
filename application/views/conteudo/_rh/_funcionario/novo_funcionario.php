@@ -58,14 +58,22 @@
                         <label for="nivel_acesso"><b class="text-danger mx-1">*</b>Departamento</label>
                         <select name="nivel_acesso" class="form-control border-info" id="nivel_acesso">
                             <option value="">Selecione o departamento</option>
-                            <option value="1">Direcção</option>
+							<?php foreach($departamentos as $departamento)
+                                {
+                                    echo '<option value= "'.$departamento->id_departamento.'">'.$departamento->departamento.'</option>';
+                                }
+                            ?>
+
+							<!-- ------------------------------------------------ -->
+                            <!-- <option value="1">Direcção</option>
                             <option value="2">Secretaria</option>
                             <option value="3">Recursos Humanos</option>
                             <option value="4">Coordenação</option>
                             <option value="5">Docente</option>
                             <option value="6">Administrador do Sistema</option>
                             <option value="7">Serviços Gerais</option>
-                            <option value="8">Segurança</option>
+                            <option value="8">Segurança</option> -->
+							<!-- ------------------------------------------------ -->
                         </select>
                         <?= form_error('nivel_acesso'); ?>
                     </div>
