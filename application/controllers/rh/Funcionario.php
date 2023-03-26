@@ -29,7 +29,10 @@ class Funcionario extends CI_Controller
 	/*=====================INICIO CRIAR NOVO FUNCIONARIO=====================*/
 	public function novo_funcionario()
 	{
-		$dados['provincias'] = $this->Select_Dinamico_Model->busca_provincias();
+		$dados = [
+			'provincias' => $this->Select_Dinamico_Model->busca_provincias(),
+			'departamentos' => $this->Select_Dinamico_Model->busca_departamentos()
+		];
 		// ---------------------------------------------------------------------
 		$this->load->view('layout/cabecalho_rh');
 		$this->load->view('layout/menu_lateral_rh');
@@ -89,7 +92,10 @@ class Funcionario extends CI_Controller
 		$this->form_validation->set_rules($regras);
 		//	CONDICAO DE VALIDACAO 
 		if ($this->form_validation->run() == FALSE) {
-			$dados['provincias'] = $this->Select_Dinamico_Model->busca_provincias();
+			$dados = [
+				'provincias' => $this->Select_Dinamico_Model->busca_provincias(),
+				'departamentos' => $this->Select_Dinamico_Model->busca_departamentos()
+			];			
 			// ---------------------------------------------------------------------
 			$this->load->view('layout/cabecalho_rh');
 			$this->load->view('layout/menu_lateral_rh');
