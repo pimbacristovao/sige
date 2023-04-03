@@ -262,7 +262,7 @@ $(document).ready(function() {
 });
 function verificar_nome_utilizador() {
 jQuery.ajax({
-	url: "<?php echo base_url(); ?>verificar_nome/check_username",
+	url: "<?php echo base_url(); ?>verificar_nome_utilizador/verificar_utilizador",
 	data: 'nome_user=' + $("#nome_user").val(),
 	type: "POST",
 	success: function(data) {
