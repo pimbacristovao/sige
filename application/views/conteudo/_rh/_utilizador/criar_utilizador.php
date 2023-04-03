@@ -16,31 +16,23 @@
 					<!--    INPUT NOME DE UTILIZADOR   -->
 					<div class="form-group col-12 my-3">
 						<label>Nome de utilizador</label>
-						<input type="text" name="nome_user" id="nome_user" class="form-control border-primary text-primary" placeholder="Ex. Ermano Cristovão" autocomplete="off" />
-						<!-- <?= form_error('nome_user')?> -->
+						<input type="text" name="nome_user" id="nome_user" class="form-control border-primary text-primary" onInput="verificar_nome_utilizador()" placeholder="Ex. aldaircristovao" autocomplete="off"  required />
+						<span id="check-username" class="mt-4 mr-4"></span> <!-- tag responsável por apresentar a mensagem ao utilizador -->
 					</div>
 					<!--    INPUT PASSWORD   -->
 					<div class="form-group col-12 my-3">
 						<label>Password</label>
-						<input type="password" name="password" id="password" class="form-control border-primary text-primary" placeholder="Digite a palavra passe" />
+						<input type="password" name="password" id="password" class="form-control border-primary text-primary" placeholder="Digite a palavra passe" required />
 					</div>
 					<!--    INPUT CONFIRMAR PASSWORD   -->
 					<div class="form-group col-12 my-3">
 						<label>Confirme a password</label>
-						<input type="password" name="confirm_password" id="confirm_password" class="form-control border-primary text-primary" placeholder="Confirme a palavra passe" />
+						<input type="password" name="confirm_password" id="confirm_password" class="form-control border-primary text-primary" placeholder="Confirme a palavra passe" required />
 					</div>
 				</div>
 				<!--------------------------------------------------------------------------->
 			</div> <!-- FIM MODAL BODY -->
-			<!-- <div class="modal-footer"> -->
-				<!-- TODO: redirecionar para uma pagina caso seja cancelado a inserção do user no sistema -->
-				<!-- <a href="#" class="btn btn-danger " data-dismiss="modal">
-					<i class="fa fa-arrow-left mr-2"></i>Voltar</a> -->
-				
-				
-			<!-- </div> -->
 			<div class="d-flex justify-content-center">
-				<button type="submit" class="btn btn-primary">
-					<i class="fa fa-save mr-2"></i>Guardar</button>
+				<button type="submit" id="submit" class="btn btn-primary px-3">Criar utilizador</button>
 			</div>
-		</form><!-- FIM MODAL FORM -->
+		</form><!-- FIM FORM -->

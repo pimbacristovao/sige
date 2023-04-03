@@ -142,21 +142,7 @@ class Funcionario extends CI_Controller
 
 	/* ====================== CARREGA A VIEW CRIAR UTILIZADOR ====================== */
 	public function criar_utilizador()
-	{
-/* 		//================= INICIO REGRAS DE VALIDAÇÃO DO FORMULÁRIO =================
-		$this->form_validation->set_error_delimiters('<div class="text-danger mt-1">', '</div>');
-		$regras = [
-			'field' => 'nome_user',
-			'label' => 'nome de usuário',
-			'rules' => 'trim|is_unique[funcionario.nome_user]'
-		];
-		//	FIM REGRAS DE VALIDAÇÃO DO FORMULÁRIO 
-		$this->form_validation->set_rules($regras);
-		//	CONDICAO DE VALIDACAO 
-		if ($this->form_validation->run() == FALSE) {
-		} else {
-		} */
-		
+	{		
 		$id = $this->input->get("id_funcionario");
 		$dados["funcionario"] = $this->Funcionario_Model->retorna_funcionario($id);
 		//	CARREGA A VIZUALIZACAO DA VIEW LISTA
