@@ -41,7 +41,9 @@
 			display: flex;
 			flex-wrap: nowrap;
 		}
-
+		.titulo-tabela {
+			font-size: 1.2em;
+		}
 		#submit:disabled {
 			background-color: red;
 			opacity: 0.5;

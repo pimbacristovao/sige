@@ -9,7 +9,7 @@
         <div class="tab-pane " id="profile-about">
             <!-- begin table -->
             <div class="table-responsive">
-                <table class="table table-striped text-uppercase align-middle">
+                <table class="table table-striped align-middle titulo-tabela"> <!-- text-uppercase -->
                     <tbody>
                         <tr class="highlight">
                             <td class="text-center align-middle" width="10%" rowspan="5">
@@ -21,31 +21,31 @@
                             <td class="text-right" width="15%"><strong>Nome:</strong></td>
                             <td class="text-left" width="35%">
                                 <strong><?=$funcionario['nome_funcionario']?></strong></td>
-                            <td class="text-right" width="20%"><strong>Data de Nascimento: </strong></td>
+                            <td class="text-right" width="20%"><strong>Data de Nascimento:</strong></td>
                             <td class="text-left" width="30%">
                                 <strong><?= date('d/ m/ Y', strtotime($funcionario['nascimento_funcionario'])); ?></strong>
                             </td>
                         </tr>
                         <tr class="highlight">
-                            <td class="text-right"><strong>Género</strong></td>
+                            <td class="text-right"><strong>Género:</strong></td>
                             <td class="text-left"><strong><?=$funcionario['genero_funcionario']?></strong></td>
                             <td class="text-right"><strong>Nº B.I:</strong></td>
                             <td class="text-left"><strong><?=$funcionario['bi_funcionario']?></strong></td>
                         </tr>
                         <tr class="highlight">
-                            <td class="text-right"><strong>Morada</strong></td>
+                            <td class="text-right"><strong>Morada:</strong></td>
                             <td class="text-left"><strong><?=$funcionario['endereco_funcionario']?></strong></td>
-                            <td class="text-right"><strong>Telemóvel</strong></td>
+                            <td class="text-right"><strong>Telemóvel:</strong></td>
                             <td class="text-left"><strong><?=$funcionario['telemovel_funcionario']?></strong></td>
                         </tr>
                         <tr class="highlight">
-                            <td class="text-right"><strong>E-Mail</strong></td>
+                            <td class="text-right"><strong>E-Mail:</strong></td>
                             <td class="text-left"><strong><?=$funcionario['email_funcionario']?></strong></td>
-                            <td class="text-right"><strong>Nome de Utilizador</strong></td>
+                            <td class="text-right"><strong>Nome de Utilizador:</strong></td>
                             <td class="text-left"><strong><?=$funcionario['nome_user']?></strong></td>
                         </tr>
                         <tr>
-                            <td class="text-right"><strong>Função</strong></td>
+                            <td class="text-right"><strong>Função:</strong></td>
                             <td class="text-left"><strong><?php 
                                 if ($funcionario['nivel_acesso'] == "1") {
                                     echo 'Director(a)';
@@ -65,7 +65,7 @@
                                     echo 'Seguraça';
                                 }
                             ?></strong></td>
-                            <td class="text-right"><strong>Nº de Funcionário</strong></td>
+                            <td class="text-right"><strong>Nº de Funcionário:</strong></td>
                             <td class="text-left"><strong><?=$funcionario['id_funcionario']?></strong></td>
                         </tr>
                     </tbody>
@@ -88,10 +88,10 @@
                                                 <i class="fa fa-camera t-plus-1 fa-fw fa-lg mr-2"></i>ALTERAR
                                                 FOGRAFIA</a>
                                         </li>
-                                        <li><a href="#modal-utilizador" data-toggle="modal">
+                                        <!-- <li><a href="#modal-utilizador" data-toggle="modal">
                                                 <i class="fa fa-user-plus t-plus-1 fa-fw fa-lg mr-2"></i>CRIAR
                                                 UTILIZADOR</a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div><!-- end dropdown -->
 
