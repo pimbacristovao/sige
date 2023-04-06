@@ -16,7 +16,7 @@
 					<!--    INPUT NOME DE UTILIZADOR   -->
 					<div class="form-group col-12 my-3">
 						<label>Nome de utilizador</label>
-						<input type="text" name="nome_user" id="nome_user" class="form-control border-primary text-primary" onInput="verificar_nome_utilizador()" placeholder="Ex. aldaircristovao" autocomplete="off"  required />
+						<input type="text" name="nome_user" id="nome_user" class="form-control border-primary text-primary" onkeydown="return (event.keyCode !== 32);" onInput="verificar_nome_utilizador()" placeholder="Ex. aldaircristovao" autocomplete="off"  required />
 						<span id="check-username" class="mt-4 mr-4"></span> <!-- tag responsável por apresentar a mensagem ao utilizador -->
 					</div>
 					<!--    INPUT PASSWORD   -->
