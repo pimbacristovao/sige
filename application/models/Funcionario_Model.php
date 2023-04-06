@@ -64,9 +64,19 @@ class Funcionario_Model extends CI_Model
     public function add_utilizador()
     {
         $id = $this->input->post('id_funcionario');
+		if (!empty($this->input->post("nome_user"))) {
+			// Sanitiza a entrada removendo tags e espaços desnecessários
+			$nome_user = trim($this->input->post("nome_user"));
+			// Valida a entrada para garantir que ela contenha apenas letras minúsculas (sem espaços)
+			if (!preg_match("/^[a-z]*$/", $nome_user)) {
+				// Se por ventura for inserido algum caractere maiúsculo
+				// Converte para minúsculas e remove espaços
+				$nome_user = strtolower(str_replace(' ', '', $nome_user));
+			}
+		}
         $funcionario = array
         (
-            "nome_user" => $this->input->post("nome_user"),
+            "nome_user" => $nome_user,
             "password" => md5($this->input->post("password"))
             // "confirm_password" => md5($this->input->post("confirm_password"))
         );
