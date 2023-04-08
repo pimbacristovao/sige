@@ -21,10 +21,10 @@ class Sessao extends CI_Controller
 	{
 		$nome_user = $this->input->post('nome_user',TRUE);
 		$password  = $this->input->post('password',TRUE);
-		$validate = $this->Sessao_Model->validate($nome_user,$password);
-		if($validate->num_rows() > 0)
+		$data = $this->Sessao_Model->validate($nome_user,$password);
+		if($data)
 		{
-			$data  = $validate->row_array();
+			// $data  = $validate;
 			$id_funcionario  	= $data['id_funcionario'];
 			$nome_funcionario  	= $data['nome_funcionario'];
 			$nome_user 			= $data['nome_user'];

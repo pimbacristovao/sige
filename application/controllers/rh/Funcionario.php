@@ -165,14 +165,14 @@ class Funcionario extends CI_Controller
 	public function alterar_password()
 	{
 		$id_funcionario = $this->input->post('id_funcionario');
-		$password_old = md5($this->input->post('password_old'));
+		$password_old = $this->input->post('password_old');
 		$password_new = $this->input->post('password_new');
 		/* -------------------------------------------------------- */
 		$this->db->select('password');
 		$this->db->where('id_funcionario', $id_funcionario);
 		$dados['password'] = $this->db->get('funcionario')->result();
 		/* -------------------------------------------------------- */
-		if ($dados['password'][0]->password == $password_old) {
+		if (password_verify($password_old, $dados['password'][0]->password)) {
 			$this->Funcionario_Model->alterar_password();
 			echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>PALAVRA PASSE ALTERADA COM SUCESSO</div>");
 			redirect('rh/funcionario/detalhe/' . $this->session->userdata('id_funcionario') . '/' . $this->session->userdata('nivel_acesso'));
