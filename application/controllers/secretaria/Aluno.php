@@ -228,20 +228,23 @@ class Aluno extends CI_Controller
 		$this->db->select('*');																// Selecione tudo 
 		$this->db->from('matricula');														// Da tbl matricula
 		$this->db->where('aluno_id', $id);													// Onde o ID igual ao ID do aluno selecionado
-		$this->db->order_by("ano_let", "desc");  											// Orden
+		$this->db->order_by("ano_let", "desc");  											// Ordem
         $this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');		// Join tbl anolectivo
 		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');					// Join tbl turma
 		$this->db->join('classe', 'classe.id_classe  = turma.classe_id');					// Join tbl classe [turma]
         $this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');				// Join tbl periodo
-		$this->db->join('sala', 'sala.id_sala = turma.sala_id');							// Join tbl sala
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');							// Join tbl sala
 		$dados ["matricula"] = $this->db->get()->result();   								// Join Matricula
 		/* ============================================================================================================================== */
 		$this->db->select('*');																// Selecione tudo
-		$this->db->from('encarregados');													// Da tbl matricula
-		$this->db->where('aluno_id', $id);													// Onde o ID igual ao ID do aluno selecionado
-		$this->db->order_by("ano_let", "desc");  											// Orden
-        $this->db->join('anolectivo', 'anolectivo.id_ano = encarregados.anolectivo_id');	// Join tbl anolectivo
-		$dados ["encarregados"] = $this->db->get()->result();   							// Join Matricula
+		$this->db->from('encarregados');													// Da tbl encarregados
+		$this->db->join('encarregado_aluno', 'encarregado_aluno.id_encarregado = encarregados.id_encarregado');
+		$this->db->join('aluno', 'aluno.id_aluno = encarregado_aluno.id_aluno');
+        $this->db->join('anolectivo', 'anolectivo.id_ano = encarregado_aluno.anolectivo_id');	// Join tbl anolectivo
+		// $this->db->where('id_aluno', $id);													// Onde o ID igual ao ID do aluno selecionado
+		$this->db->order_by("ano_let", "desc");  											// Ordem
+		$dados ["encarregados"] = $this->db->get()->result();   							
 		//									CARREGA A VIZUALIZACAO DA VIEW LISTA
 		/* ============================================================================================================================== */
 		if($this->session->userdata('nivel_acesso')==='1')

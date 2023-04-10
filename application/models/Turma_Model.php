@@ -6,12 +6,13 @@ class Turma_Model extends CI_Model {
     //  LISTAR OS REGISTROS DA TABELA TURMA
     public function listarturma()
     {        
-        $this->db->select('*');																		// select tudo
-		$this->db->join('periodo', 'periodo.id_periodo  = turma.periodo_id');						// Join tbl classe [turma]
-		$this->db->join('classe',  'classe.id_classe  = turma.classe_id');			    			// Join tbl classe [turma]
-		$this->db->join('sala',     'sala.id_sala  = turma.sala_id');			    			// Join tbl classe [turma]
-		$this->db->order_by("nome_turma", "asc");                                             // Ordenar a travez do nome
-		return $this->db->get("turma")->result_array();	
+        $this->db->select('*');													// select tudo
+		$this->db->join('periodo', 'periodo.id_periodo  = turma.periodo_id');		// Join tbl periodo [turma]
+		$this->db->join('classe', 'classe.id_classe  = turma.classe_id');			// Join tbl classe [turma]
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');		// Join tbl turma_sala [turma]
+		$this->db->join('sala', 'sala.id_sala  = turma_sala.id_sala');			// Join tbl sala [turma_sala]
+		$this->db->order_by("nome_turma", "asc");                               // Ordenar a travez do nome da turma
+		return $this->db->get("turma")->result_array();
     }
 
     //  INSERIR REGISTROS NA TABELA TURMA
