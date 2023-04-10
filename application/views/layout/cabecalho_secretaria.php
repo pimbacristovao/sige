@@ -9,6 +9,10 @@
     <meta content="" name="description" />
     <meta content="" name="Ermano Cristovao" />
     <!-- ================== INICIO BASE CSS STYLE ================== -->
+	<link rel="apple-touch-icon" sizes="180x180" href="<?= base_url(); ?>_assets/css/default/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="<?= base_url(); ?>_assets/css/default/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="<?= base_url(); ?>_assets/css/default/favicon/favicon-16x16.png">
+	<link rel="manifest" href="<?= base_url(); ?>_assets/css/default/favicon/site.webmanifest">
     <link href="<?= base_url(); ?>_assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
     <link href="<?= base_url(); ?>_assets/plugins/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="<?= base_url(); ?>_assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css" rel="stylesheet" />
