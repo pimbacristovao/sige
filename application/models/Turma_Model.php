@@ -17,13 +17,19 @@ class Turma_Model extends CI_Model {
     //  INSERIR REGISTROS NA TABELA TURMA
     public function novaturma()
     {
+		$sala_id = $this->input->post('numero_sala');
         $turma = array(
             "nome_turma" =>$this->input->post('nome_turma'),
-			"sala_id"    =>$this->input->post('numero_sala'),
 			"classe_id"  =>$this->input->post('nome_classe'),
 			"periodo_id" =>$this->input->post('nome_periodo')
-        ); 
-        $this->db->insert("turma", $turma);
+        );
+		$this->db->trans_start(); // Inicia uma transação com a base de dados
+		$this->db->insert("turma", $turma); // Insere os dados na tbl turma usando os dados fornecidos pela variável "turma"
+		$this->db->insert("turma_sala", array(
+			"id_turma" => $this->db->insert_id(), // Obtém o último id inserido na tbl turma
+			"id_sala" => $sala_id) // Obtém o dado recebido na variável anolectivo_id
+		);
+		$this->db->trans_complete(); // Completa a transacção com a base de dados
     }
 
     public function retorna($id){
