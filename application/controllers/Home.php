@@ -593,16 +593,17 @@ class Home extends CI_Controller
 		{
 			$id = $this->session->userdata('id_funcionario');
 			// ==============================================================================================================================
-			$this->db->select('*');																// Selecione tudo 
-			$this->db->from('prof_turma');														// Da tbl matricula
-			$this->db->where('funcionario_id', $id);											// Onde o ID igual ao ID do aluno selecionado
-			$this->db->order_by("ano_let", "desc");  											// Orden
-			$this->db->join('anolectivo', 'anolectivo.id_ano = prof_turma.anolectivo_id');		// Join tbl anolectivo
-			$this->db->join('turma', 'turma.id_turma = prof_turma.turma_id');					// Join tbl anolectivo
-			$this->db->join('classe', 'classe.id_classe = turma.classe_id');					// Join tbl anolectivo
-			$this->db->join('sala', 'sala.id_sala = turma.sala_id');							// Join tbl anolectivo
-			$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');				// Join tbl anolectivo
-			$dados ["prof_turma"] = $this->db->get()->result();									// Join Matricula
+			$this->db->select('*');															// Selecione tudo 
+			$this->db->from('prof_turma');													// Da tbl matricula
+			$this->db->where('funcionario_id', $id);										// Onde o ID igual ao ID do funcionário selecionado
+			$this->db->order_by("ano_let", "desc");  											// Ordem decrescente
+			$this->db->join('anolectivo', 'anolectivo.id_ano = prof_turma.anolectivo_id');	// Join tbl anolectivo e [prof_turma]
+			$this->db->join('turma', 'turma.id_turma = prof_turma.turma_id');				// Join tbl turma e [prof_turma]
+			$this->db->join('classe', 'classe.id_classe = turma.classe_id');				// Join tbl classe e [turma] 
+			$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');			// Join tbl turma_sala e [turma]
+			$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');					// Join tbl sala e [turma_sala]
+			$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');			// Join tbl periodo e [turma]
+			$dados ["prof_turma"] = $this->db->get()->result();								// Retorna várias linhas
 			// ==============================================================================================================================
 			$this->load->view('layout/cabecalho');
 			$this->load->view('layout/menu_lateral_docente');
