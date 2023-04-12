@@ -78,7 +78,7 @@ class Matricula_Model extends CI_Model
                 'anolectivo_id'  => $this->input->post('anolectivo'),
                 'turma_id'  	 => $this->input->post('turma')
             );
-            $this->db->insert("assiduidade_alunos", $falta_alunos);
+            $this->db->insert("aula", $falta_alunos);
         }
     }
     /*
@@ -86,12 +86,12 @@ class Matricula_Model extends CI_Model
     */
     public function justificar_falta()
     {
-        $id_assiduidade = $this->input->post('id_assiduidade');
+        $id_aula = $this->input->post('id_assiduidade');
         $justicar_falta = array(
 			"justificacao" => $this->input->post('justificacao')
 		);
-        $this->db->where('id_assiduidade', $id_assiduidade);
-        return $this->db->update('assiduidade_alunos', $justicar_falta);
+        $this->db->where('id_aula', $id_aula);
+        return $this->db->update('aula', $justicar_falta);
     }
     /*=============== salvar notas 1º trimestre===============*/
     public function salvar_nota_1()
