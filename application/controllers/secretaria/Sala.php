@@ -103,16 +103,18 @@ class Sala extends CI_Controller
 	public function ver_turmas($id_sala)
 	{
 		$this->db->select('*');															// select tudo
-		$this->db->from('sala');														// da tbl matricula
-		$this->db->where("id_sala", $id_sala);											// onde
-		$dados["sala"] = $this->db->get()->row();
+		$this->db->from('sala');														// da tbl sala
+		$this->db->where("id_sala", $id_sala);											// onde id da sala é igual ao id da sala passado como argumento
+		$dados["sala"] = $this->db->get()->row();										// retorna uma linha
 		/* ================================================================================================== */
 		$this->db->select('*');															// select tudo
-		$this->db->from('turma');														// da tbl matricula
-		$this->db->where("sala_id", $id_sala);											// onde
+		$this->db->from('turma', 'turma_sala.id_sala');									// da tbl turma
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');		 		// Join tbl classe e turma 
+		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		 	// Join periodo e turma
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');
+		$this->db->where("turma_sala.id_sala", $id_sala);									// onde id é igual ao id da sala
 		$this->db->order_by("nome_turma", "asc");  										// Ordenar a travez do nome
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');		 		// Join turma e matricula
-		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		 	// Join turma e matricula
 		$dados['turmas'] = $this->db->get()->result();									// retorna várias linhas
 		if ( empty($dados["turmas"]) )
 		{

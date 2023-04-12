@@ -27,14 +27,14 @@ class Turma extends CI_Controller
 	//			CHAMA A VIEW LISTAR TURMA	
 	public function listar_turmas()
 	{
-		$this->db->select('*');													// Selecione Tudo
-		$this->db->from('turma');												// Da tabela Turma
-		$this->db->join('classe', 'classe.id_classe  = turma.classe_id');		// Join tbl classe [turma]
-		$this->db->join('periodo', 'periodo.id_periodo  = turma.periodo_id');	// Join tbl periodo [turma]
-		$this->db->join('turma_sala', 'turma_sala.id_turma  = turma.id_turma');		//
-		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');
-		$this->db->order_by("nome_turma", "asc");									// Ordem
-		$dados["turmas"] = $this->db->get()->result();							// Retorna uma matriz(array) contendo os resultados da consulta	   
+		$this->db->select('*');															// Selecione Tudo
+		$this->db->from('turma');														// Da tabela Matricula
+		$this->db->order_by("nome_turma", "asc");											// Ordem
+		$this->db->join('classe', 	  'classe.id_classe  = turma.classe_id');				// Join tbl classe e [turma]
+		$this->db->join('periodo', 	  'periodo.id_periodo  = turma.periodo_id');			// Join tbl classe e [turma]
+		$this->db->join('turma_sala', 'turma_sala.id_turma  = turma.id_turma');
+		$this->db->join('sala', 	  'sala.id_sala  = turma_sala.id_sala');				// Join tbl sala e [turma_sala]
+		$dados["turmas"] = $this->db->get()->result();										// 	   
 		//======================================================================
 		$this->load->view('layout/cabecalho');
 		$this->load->view('layout/menu_lateral_secretaria');
@@ -45,13 +45,14 @@ class Turma extends CI_Controller
 	//			CHAMA A VIEW LISTAR TURMA	
 	public function listar_turmas_coordenacao()
 	{
-		$this->db->select('*');																// Selecione Tudo
-		$this->db->from('turma');														// Da tabela Matricula
-		$this->db->order_by("nome_turma", "asc");												// Orden
-		$this->db->join('classe', 	  'classe.id_classe  = turma.classe_id');				// Join tbl classe [turma]
-		$this->db->join('periodo', 	  'periodo.id_periodo  = turma.periodo_id');				// Join tbl classe [turma]
-		$this->db->join('sala', 	  'sala.id_sala  = turma.sala_id');				// Join tbl classe [turma]
-		$dados["turmas"] = $this->db->get()->result();									// Join Matricula	   
+		$this->db->select('*');													// Selecione Tudo
+		$this->db->from('turma');												// Da tabela Turma
+		$this->db->join('classe', 'classe.id_classe  = turma.classe_id');		// Join tbl classe [turma]
+		$this->db->join('periodo', 'periodo.id_periodo  = turma.periodo_id');	// Join tbl periodo [turma]
+		$this->db->join('turma_sala', 'turma_sala.id_turma  = turma.id_turma');	// Join tbl turma_sala [turma]
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');			// Join tbl sala [turma_sala]
+		$this->db->order_by("nome_turma", "asc");									// Ordem
+		$dados["turmas"] = $this->db->get()->result();							// Retorna uma matriz(array) contendo os resultados da consulta	    
 		//======================================================================
 		$this->load->view('layout/cabecalho');
 		$this->load->view('layout/menu_lateral_coordenacao');
