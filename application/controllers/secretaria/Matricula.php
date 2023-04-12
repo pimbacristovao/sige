@@ -615,8 +615,8 @@ class Matricula extends CI_Controller
 	=======================================================================*/
 	public function marcar_falta()
 	{
-		$aluno_id = $this->input->post('aluno_id');		
-		$id_anolectivo = $this->input->post('anolectivo');  //	pega o id da matricula
+		$aluno_id = $this->input->post('aluno_id');			//	pega o id do aluno
+		$id_anolectivo = $this->input->post('anolectivo');  //	pega o id do anolectivo
 		$id_turma 	   = $this->input->post('turma');       //	pega o id da turma
 		/* ------------------------------------------------------------------------------------------------------------------------- */
 		if (empty($aluno_id)){
