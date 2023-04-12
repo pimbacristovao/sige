@@ -124,19 +124,19 @@ class Aluno extends CI_Controller
 		$this->form_validation->set_rules($regras);
 		//	CONDICAO DE VALIDACAO 
 		if ($this->form_validation->run() == FALSE ) {
-		$dados['pais'] = $this->Select_Dinamico_Model->busca_pais(); // Carrega Todos os Paises da BD num Select Dinamico
-		//	CHAMA A VIEW do FURMULARIO CRIAR ALUNO 
-		$this->load->model("Aluno_Model", "aluno");
-		$this->load->view('layout/cabecalho_secretaria');
-	 	$this->load->view('layout/menu_lateral_secretaria');
-		$this->load->view('conteudo/_secretaria/_aluno/criar_aluno', $dados);
-		$this->load->view('layout/rodape');
-		$this->load->view('layout/script');
-		} else {	
-		$this->Aluno_Model->novoaluno(); // Carrega o Model novoaluno		
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ALUNO ADICIONADO COM SUCESSO</div>");	
-		$id_aluno = $this->db->insert_id(); // Pega o ultimo ID inserido na BD
-		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); // Redireciona Para o Pefil do Aluno
+			$dados['pais'] = $this->Select_Dinamico_Model->busca_pais(); // Carrega Todos os Paises da BD num Select Dinamico
+			//	CHAMA A VIEW do FURMULARIO CRIAR ALUNO
+			$this->load->model("Aluno_Model", "aluno");
+			$this->load->view('layout/cabecalho_secretaria');
+			$this->load->view('layout/menu_lateral_secretaria');
+			$this->load->view('conteudo/_secretaria/_aluno/criar_aluno', $dados);
+			$this->load->view('layout/rodape');
+			$this->load->view('layout/script');
+			} else {	
+			$this->Aluno_Model->novoaluno(); // Carrega o Model novoaluno		
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ALUNO ADICIONADO COM SUCESSO</div>");	
+			$id_aluno = $this->db->insert_id(); // Pega o ultimo ID inserido na BD
+			redirect('secretaria/aluno/detalhe?id_aluno=' . $id_aluno); // Redireciona Para o Pefil do Aluno
 		}
 	}
 	//										FUNCAO EDITAR ALUNO 
@@ -168,10 +168,10 @@ class Aluno extends CI_Controller
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); // Redireciona para o perfifil do aluno
 	}
 	/*----------------------------- NUMERO DE PROCESSO -----------------------------*/
-	public function num_processo($id)
+	public function num_processo()
 	{
-		$this->Aluno_Model->num_processo($id);
 		$id_aluno = $this->input->post('aluno_id'); //	Pega o id do aluno inserido
+		$this->Aluno_Model->num_processo($id);
 		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>NÚMERO DE PROCESSO ADICIONADO COM SUCESSO</div>");	
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); // Redireciona para o perfifil do aluno
 	}
@@ -222,29 +222,29 @@ class Aluno extends CI_Controller
 		$this->db->select('*');
 		$this->db->from('aluno');
 		$this->db->where('id_aluno', $id);
-		$this->db->join('funcionario', 'funcionario.id_funcionario = aluno.funcionario_id');  //	join funcionario
-		$dados["aluno_funcionario"] = $this->db->get()->row();
+		$this->db->join('funcionario', 'funcionario.id_funcionario = aluno.funcionario_id');  // Join tbl funcionario e [aluno]
+		$dados["aluno_funcionario"] = $this->db->get()->row();								  // Retorna uma linha
 		/* ============================================================================================================================== */
 		$this->db->select('*');																// Selecione tudo 
 		$this->db->from('matricula');														// Da tbl matricula
 		$this->db->where('aluno_id', $id);													// Onde o ID igual ao ID do aluno selecionado
-		$this->db->order_by("ano_let", "desc");  											// Ordem
         $this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');		// Join tbl anolectivo
-		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');					// Join tbl turma
-		$this->db->join('classe', 'classe.id_classe  = turma.classe_id');					// Join tbl classe [turma]
-        $this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');				// Join tbl periodo
-		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');
-		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');							// Join tbl sala
-		$dados ["matricula"] = $this->db->get()->result();   								// Join Matricula
-		/* ============================================================================================================================== */
+		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');					// Join tbl turma e [matricula]
+		$this->db->join('classe', 'classe.id_classe  = turma.classe_id');					// Join tbl classe e [turma]
+        $this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');				// Join tbl periodo e [turma]
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');				// Join tbl turma_sala e [turma]
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');						// Join tbl sala [turma_sala]
+		$this->db->order_by("ano_let", "desc");  											// Ordem decrescente
+		$dados["matricula"] = $this->db->get()->result();   								// retorna uma variável contendo os resultados
+		/* ============================================================================================================================== */	
 		$this->db->select('*');																// Selecione tudo
-		$this->db->from('encarregados');													// Da tbl encarregados
-		$this->db->join('encarregado_aluno', 'encarregado_aluno.id_encarregado = encarregados.id_encarregado');
+		$this->db->from('encarregados');													// Da tbl encarregados											
+		$this->db->where('encarregado_aluno.id_aluno', $id);  								// Onde o ID igual ao ID do aluno selecionado
+		$this->db->join('encarregado_aluno', 'encarregado_aluno.id_encarregado = encarregados.id_encarregado'); // Join tbl encarregado_aluno e [encarregados]
 		$this->db->join('aluno', 'aluno.id_aluno = encarregado_aluno.id_aluno');
-        $this->db->join('anolectivo', 'anolectivo.id_ano = encarregado_aluno.anolectivo_id');	// Join tbl anolectivo
-		// $this->db->where('id_aluno', $id);													// Onde o ID igual ao ID do aluno selecionado
-		$this->db->order_by("ano_let", "desc");  											// Ordem
-		$dados ["encarregados"] = $this->db->get()->result();   							
+		$this->db->join('anolectivo', 'anolectivo.id_ano = encarregado_aluno.anolectivo_id'); // Join tbl anolectivo e [encarregado_aluno]
+		$this->db->order_by('ano_let', 'desc');												// Ordem decrescente
+		$dados['encarregados'] = $this->db->get()->result();								// retorna uma variável contendo os resultados
 		//									CARREGA A VIZUALIZACAO DA VIEW LISTA
 		/* ============================================================================================================================== */
 		if($this->session->userdata('nivel_acesso')==='1')
