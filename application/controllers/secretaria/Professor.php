@@ -47,11 +47,11 @@ class Professor extends CI_Controller
 	public function turmas_professor_coordenacao($id_prof)
 	{
 		// ==============================================================================================================================
-		$this->db->select('*');																			// Selecione tudo 
-		$this->db->from('prof_turma');																	// Da tbl matricula
-		$this->db->where('funcionario_id', $id_prof);													// Onde o ID igual ao ID do aluno selecionado
-		$this->db->join('funcionario', 'funcionario.id_funcionario = prof_turma.funcionario_id');		// Join tbl anolectivo
-		$dados["prof"] = $this->db->get()->row();														// retorna 1 linha
+		$this->db->select('*');																		// Selecione tudo 
+		$this->db->from('prof_turma');																// Da tbl prof_turma
+		$this->db->where('funcionario_id', $id_prof);												// Onde o ID igual ao ID do aluno selecionado
+		$this->db->join('funcionario', 'funcionario.id_funcionario = prof_turma.funcionario_id');	// Join tbl anolectivo
+		$dados["prof"] = $this->db->get()->row();													// retorna 1 linha
 		if ( empty($dados["prof"]) )
 		{
 			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>PROFESSOR SELECIONADO NÃO TEM TURMA</div>");	
@@ -60,17 +60,17 @@ class Professor extends CI_Controller
 		elseif ( !empty($dados["prof"]) )
 		{
 			// ==============================================================================================================================
-			$this->db->select('*');																			// Selecione tudo 
-			$this->db->from('prof_turma');																	// Da tbl matricula
-			$this->db->where('funcionario_id', $id_prof);													// Onde o ID igual ao ID do aluno selecionado
-			$this->db->order_by("ano_let", "desc");  														// Orden
-			$this->db->join('anolectivo', 'anolectivo.id_ano = prof_turma.anolectivo_id');					// Join tbl anolectivo
-			$this->db->join('turma', 'turma.id_turma = prof_turma.turma_id');								// Join tbl anolectivo
-			$this->db->join('classe', 'classe.id_classe = turma.classe_id');								// Join tbl anolectivo
-			$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');								// Join tbl anolectivo
-			$this->db->join('sala', 'sala.id_sala = turma.sala_id');								// Join tbl anolectivo
-			
-			$dados ["prof_turma"] = $this->db->get()->result();   											// Join Matricula
+			$this->db->select('*');																// Selecione tudo 
+			$this->db->from('prof_turma');														// Da tbl prof_turma
+			$this->db->where('funcionario_id', $id_prof);										// onde o valor da coluna "funcionario_id" é igual ao valor passado como parâmetro $id_prof
+			$this->db->order_by("ano_let", "desc");  											// Ordem
+			$this->db->join('anolectivo', 'anolectivo.id_ano = prof_turma.anolectivo_id');		// Join tbl anolectivo
+			$this->db->join('turma', 'turma.id_turma = prof_turma.turma_id');					// Join tbl turma
+			$this->db->join('classe', 'classe.id_classe = turma.classe_id');					// Join tbl classe
+			$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');				// Join tbl periodo
+			$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');				// Join tbl turma_sala
+			$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');						// Join tbl sala 
+			$dados ["prof_turma"] = $this->db->get()->result();   								// retorna várias linhas
 			// ==============================================================================================================================
 			$this->load->view('layout/cabecalho');
 			$this->load->view('layout/menu_lateral_coordenacao');
