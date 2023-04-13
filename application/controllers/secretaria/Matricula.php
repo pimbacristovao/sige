@@ -134,7 +134,8 @@ class Matricula extends CI_Controller
 		$this->db->join('turma',  	  'turma.id_turma = matricula.turma_id');
 		$this->db->join('classe', 	  'classe.id_classe  = turma.classe_id');				// Join tbl classe [turma]
 		$this->db->join('periodo',    'periodo.id_periodo = turma.periodo_id');
-		$this->db->join('sala',  	  'sala.id_sala = turma.sala_id');
+		$this->db->join('turma_sala',    'turma_sala.id_turma = turma.id_turma');
+		$this->db->join('sala',  	  'sala.id_sala = turma_sala.id_sala');
 		$this->db->join('funcionario','funcionario.id_funcionario = matricula.funcionario_id');
 		$dados["matricula_row"] = $this->db->get()->row();									// Join Matricula
 		/*===========================================================================================================================*/ 
