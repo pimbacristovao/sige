@@ -292,44 +292,44 @@ class Listagem extends CI_Controller
 	}
 	public function mapa_assiduidade($anolectivo, $turma, $aluno)
 	{
-		$this->db->select('*');													  					// select tudo
-		$this->db->from('assiduidade_alunos');												 		// da tbl matricula
-		$this->db->where("anolectivo_id", $anolectivo);												// onde
-        $this->db->where("turma_id", $turma);									 					// onde
-        $this->db->where("aluno_id", $aluno);									 					// onde
-		$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id');					// join ano lectivo e matricula
-		$this->db->join('anolectivo', 'anolectivo.id_ano = assiduidade_alunos.anolectivo_id');		// join ano lectivo e matricula
-		$this->db->join('turma', 'turma.id_turma = assiduidade_alunos.turma_id');					// join turma e matricula
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');							// Join tbl classe [turma]
-		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');						// join periodo e turma
-		$dados["listagem_alunos"] = $this->db->get()->row();										// retorna 1 linha
+		$this->db->select('*');													  // select tudo
+		$this->db->from('aula');												 // da tbl aula
+		$this->db->where("anolectivo_id", $anolectivo);								// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+        $this->db->where("turma_id", $turma);									 	// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+        $this->db->where("aluno_id", $aluno);									 	// onde o valor da coluna "aluno_id" é igual ao valor passado como parâmetro $aluno
+		$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id');				// join tbl aluno e [aula]
+		$this->db->join('anolectivo', 'anolectivo.id_ano = aula.anolectivo_id');// join tbl anolectivo e [aula]
+		$this->db->join('turma', 'turma.id_turma = aula.turma_id');				// join tbl turma e [aula]
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');		// Join tbl classe e [turma]
+		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');	// join tbl periodo e [turma]
+		$dados["listagem_alunos"] = $this->db->get()->row();					// retorna 1 linha
 		/*			Total de Faltas 
 		------------------------------------------------------------------------------------------------------------- */
-		$this->db->select('*');													  					// select tudo
-		$this->db->from('assiduidade_alunos');												 		// da tbl matricula
-		$this->db->where("anolectivo_id", $anolectivo);												// filtro
-        $this->db->where("turma_id", $turma);									 					// filtro
-        $this->db->where("aluno_id", $aluno);									 					// filtro
-        $this->db->where("falta", '1');									 							// filtro
-		$dados["numero_faltas"] = $this->db->get()->num_rows();
+		$this->db->select('*');													// select tudo
+		$this->db->from('aula');												// da tbl aula
+        $this->db->where("turma_id", $turma);										// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+		$this->db->where("anolectivo_id", $anolectivo);								// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+        $this->db->where("aluno_id", $aluno);										// onde o valor da coluna "aluno_id" é igual ao valor passado como parâmetro $aluno
+        $this->db->where("falta", '1');									 			// onde o valor da coluna "falta" é igual a 1
+		$dados["numero_faltas"] = $this->db->get()->num_rows();					// retorna várias linhas
 		/*			Total de Falts Justificadas 
 		------------------------------------------------------------------------------------------------------------- */
-		$this->db->select('*');													  					// select tudo
-		$this->db->from('assiduidade_alunos');												 		// da tbl matricula
-		$this->db->where("anolectivo_id", $anolectivo);												// filtro
-        $this->db->where("turma_id", $turma);									 					// filtro
-        $this->db->where("aluno_id", $aluno);									 					// filtro
-        $this->db->where("justificacao", '1');									 					// filtro
-		$dados["faltas_justificadas"] = $this->db->get()->num_rows();
+		$this->db->select('*');													  // select tudo
+		$this->db->from('aula');												 // da tbl matricula
+		$this->db->where("anolectivo_id", $anolectivo);								// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+        $this->db->where("turma_id", $turma);									 	// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+        $this->db->where("aluno_id", $aluno);									 	// onde o valor da coluna "aluno_id" é igual ao valor passado como parâmetro $aluno
+        $this->db->where("justificacao", '1');									 	// onde o valor da coluna "justificação" é igual a 1
+		$dados["faltas_justificadas"] = $this->db->get()->num_rows();			// retorna várias linhas
 		/*			Total de Faltas Nao Justificadas 
 		------------------------------------------------------------------------------------------------------------- */
-		$this->db->select('*');													  					// select tudo
-		$this->db->from('assiduidade_alunos');												 		// da tbl matricula
-		$this->db->where("anolectivo_id", $anolectivo);												// filtro
-        $this->db->where("turma_id", $turma);									 					// filtro
-        $this->db->where("aluno_id", $aluno);									 					// filtro
-        $this->db->where("justificacao", '0');									 					// filtro
-		$dados["faltas_n_justificadas"] = $this->db->get()->num_rows();
+		$this->db->select('*');													// select tudo
+		$this->db->from('aula');												// da tbl matricula
+		$this->db->where("anolectivo_id", $anolectivo);								// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+        $this->db->where("turma_id", $turma);									 	// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+        $this->db->where("aluno_id", $aluno);									 	// onde o valor da coluna "aluno_id" é igual ao valor passado como parâmetro $aluno
+        $this->db->where("justificacao", '0');									 	// onde o valor da coluna "justificação" é igual a 0
+		$dados["faltas_n_justificadas"] = $this->db->get()->num_rows();			// retorna várias linhas
 		/* ------------------------------------------------------------------------------------------------------------- */
 		if (empty($dados["listagem_alunos"]))
 		{
@@ -338,22 +338,22 @@ class Listagem extends CI_Controller
 		}
 		elseif (!empty($dados["listagem_alunos"]))
 		{
-			$this->db->select('*');																		// select tudo
-			$this->db->from('assiduidade_alunos');														// da tbl matricula
-			$this->db->where("anolectivo_id", $anolectivo);												// onde
-			$this->db->where("turma_id", $turma);														// onde 
-			$this->db->where("aluno_id", $aluno);									 					// onde
-			$this->db->order_by("data", "asc");  														// Ordenar a travez do nome
-			$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id');		 			// Join aluno e matricula
-        	$this->db->join('anolectivo', 'anolectivo.id_ano = assiduidade_alunos.anolectivo_id'); 		// Join anolectivo e matricula
-			$this->db->join('turma', 'turma.id_turma = assiduidade_alunos.turma_id');		 			// Join turma e matricula
-			$dados['alunos'] = $this->db->get()->result();												// retorna várias linhas
+			$this->db->select('*');													// select tudo
+			$this->db->from('aula');												// da tbl aula
+			$this->db->where("anolectivo_id", $anolectivo);								// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+			$this->db->where("turma_id", $turma);									 	// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+			$this->db->where("aluno_id", $aluno);									 	// onde o valor da coluna "aluno_id" é igual ao valor passado como parâmetro $aluno
+			$this->db->order_by("data", "asc");  									// Ordenar a travez da data
+			$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id');		 		// Join aluno e aula
+        	$this->db->join('anolectivo', 'anolectivo.id_ano = aula.anolectivo_id'); // Join anolectivo e aula
+			$this->db->join('turma', 'turma.id_turma = aula.turma_id');		 		// Join turma e matricula
+			$dados['alunos'] = $this->db->get()->result();							// retorna várias linhas
 			/* ===========================================================================================================*/
-			$this->db->select('*');													  					// select tudo
-			$this->db->from('prof_turma');												 				// da tbl matricula
-			$this->db->where("anolectivo_id", $anolectivo);												// onde
-			$this->db->where("turma_id", $turma);									 					// onde
-			$this->db->join('funcionario', 'funcionario.id_funcionario = prof_turma.funcionario_id');	// join ano lectivo e matricula
+			$this->db->select('*');													  	// select tudo
+			$this->db->from('prof_turma');												// da tbl matricula
+			$this->db->where("anolectivo_id", $anolectivo);									// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+			$this->db->where("turma_id", $turma);									 		// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+			$this->db->join('funcionario', 'funcionario.id_funcionario = prof_turma.funcionario_id');	// join funcionario e prof_turma
 			$dados["prof"] = $this->db->get()->row();													// retorna 1 linha
 			/* ===========================================================================================================*/
 			$this->load->view('layout/cabecalho');
@@ -364,26 +364,26 @@ class Listagem extends CI_Controller
 			$this->load->view('layout/script');
 		}
 	}
-	public function justificar_falta($id_assiduidade)
+	public function justificar_falta($id_aula)
 	{
-		$this->db->select('*');													  					// select tudo
-		$this->db->from('assiduidade_alunos');												 		// da tbl matricula
-		$this->db->where("id_assiduidade", $id_assiduidade);												// onde
-		$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id');					// join ano lectivo e matricula
-		$this->db->join('anolectivo', 'anolectivo.id_ano = assiduidade_alunos.anolectivo_id');		// join ano lectivo e matricula
-		$this->db->join('turma', 'turma.id_turma = assiduidade_alunos.turma_id');					// join turma e matricula
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');							// Join tbl classe [turma]
-		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');						// join periodo e turma
-		$dados["listagem_alunos"] = $this->db->get()->row();										// retorna 1 linha
+		$this->db->select('*');													  	// select tudo
+		$this->db->from('aula');												 	// da tbl aula
+		$this->db->where("id_aula", $id_aula);											// onde o valor da coluna "id_aula" é igual ao valor passado como parâmetro $id_aula
+		$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id');					// join aluno e aula
+		$this->db->join('anolectivo', 'anolectivo.id_ano = aula.anolectivo_id');	// join anolectivo e aula
+		$this->db->join('turma', 'turma.id_turma = aula.turma_id');					// join turma e aula
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');			// Join tbl classe e [turma]
+		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		// join periodo e [turma]
+		$dados["listagem_alunos"] = $this->db->get()->row();						// retorna 1 linha
 		/* ------------------------------------------------------------------------------------------------------------- */
-		$this->db->select('*');																		// select tudo
-		$this->db->from('assiduidade_alunos');																// da tbl matricula
-		$this->db->where("id_assiduidade", $id_assiduidade);												// onde
-		$this->db->order_by("data", "asc");  														// Ordenar a travez do nome
-		$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id');		 					// Join aluno e matricula
-		$this->db->join('anolectivo', 'anolectivo.id_ano = assiduidade_alunos.anolectivo_id'); 				// Join anolectivo e matricula
-		$this->db->join('turma', 'turma.id_turma = assiduidade_alunos.turma_id');		 					// Join turma e matricula
-		$dados['alunos'] = $this->db->get()->result();												// retorna várias linhas
+		$this->db->select('*');														// select tudo
+		$this->db->from('aula');													// da tbl aula
+		$this->db->where("id_aula", $id_aula);										// onde o valor da coluna "id_aula" é igual ao valor passado como parâmetro $id_aula
+		$this->db->order_by("data", "asc");  										// Ordenar a travez da data
+		$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id');		 			// Join aluno e [aula]
+		$this->db->join('anolectivo', 'anolectivo.id_ano = aula.anolectivo_id'); 	// Join anolectivo e [aula]
+		$this->db->join('turma', 'turma.id_turma = aula.turma_id');		 			// Join turma e [aula]
+		$dados['alunos'] = $this->db->get()->result();								// retorna várias linhas
 		/* ===========================================================================================================*/
 		$this->load->view('layout/cabecalho');
 		$this->load->view('layout/menu_lateral_docente');
@@ -394,16 +394,16 @@ class Listagem extends CI_Controller
 	}
 	public function mapa_assiduidade_geral($anolectivo, $turma)
 	{
-		$this->db->select('*');													  					// select tudo
-		$this->db->from('assiduidade_alunos');												 		// da tbl matricula
-		$this->db->where("anolectivo_id", $anolectivo);												// onde
-    $this->db->where("turma_id", $turma);									 					// onde
-		$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id');					// join ano lectivo e matricula
-		$this->db->join('anolectivo', 'anolectivo.id_ano = assiduidade_alunos.anolectivo_id');		// join ano lectivo e matricula
-		$this->db->join('turma', 'turma.id_turma = assiduidade_alunos.turma_id');					// join turma e matricula
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');							// Join tbl classe [turma]
-		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');						// join periodo e turma
-		$dados["listagem_alunos"] = $this->db->get()->row();										// retorna 1 linha
+		$this->db->select('*');													  	// select tudo
+		$this->db->from('aula');												 	// da tbl matricula
+		$this->db->where("anolectivo_id", $anolectivo);									// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+    	$this->db->where("turma_id", $turma);									 		// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+		$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id');					// join ano lectivo e [aula]
+		$this->db->join('anolectivo', 'anolectivo.id_ano = aula.anolectivo_id');	// join ano lectivo e [aula]
+		$this->db->join('turma', 'turma.id_turma = aula.turma_id');					// join turma e [aula]
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');			// Join tbl classe e [turma]
+		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		// join periodo e [turma]
+		$dados["listagem_alunos"] = $this->db->get()->row();						// retorna 1 linha
 		/* ------------------------------------------------------------------------------------------------------------- */
 		if (empty($dados["listagem_alunos"]))
 		{
@@ -413,29 +413,29 @@ class Listagem extends CI_Controller
 		elseif (!empty($dados["listagem_alunos"]))
 		{
 			/* ===========================================================================================================*/
-			$this->db->from('assiduidade_alunos');														// de notas disciplina
-			$this->db->where("anolectivo_id", $anolectivo);												// filtro - anolectivo
-			$this->db->where("turma_id", $turma);														// filtro - turma
-			$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id', 'left');			// join turma e matricula
-			$this->db->group_by('assiduidade_alunos.aluno_id');											// agrupamento
-			$this->db->order_by("nome", "asc");  												 		// Ordenar a travez do nome
-			$dados['alunos'] = $this->db->get()->result();														// retorna várias linhas
+			$this->db->from('aula');													// de notas disciplina
+			$this->db->where("anolectivo_id", $anolectivo);									// filtro - anolectivo
+			$this->db->where("turma_id", $turma);											// filtro - turma
+			$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id', 'left');			// join turma e matricula
+			$this->db->group_by('aula.aluno_id');											// agrupamento
+			$this->db->order_by("nome", "asc");  											// Ordenar a travez do nome
+			$dados['alunos'] = $this->db->get()->result();								// retorna várias linhas
 			/*--------------------------------------------------------------------------------------------------------------------------------*/
-			$this->db->select_sum('falta');																// de notas disciplina
-			$this->db->select_sum('justificacao');																// de notas disciplina
-			$this->db->from('assiduidade_alunos');														// de notas disciplina
-			$this->db->where("anolectivo_id", $anolectivo);												// filtro - anolectivo
-			$this->db->where("turma_id", $turma);														// filtro - turma
-			$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id', 'left');			// join turma e matricula
-			$this->db->group_by('assiduidade_alunos.aluno_id');											// agrupamento
-			$this->db->order_by("nome", "asc");  												 		// Ordenar a travez do nome
-			$dados['num_faltas'] = $this->db->get()->result();											// retorna várias linhas
+			$this->db->select_sum('falta');												// seleciona a soma da coluna "falta"
+			$this->db->select_sum('justificacao');										// e da coluna "justificacao"
+			$this->db->from('aula');													// de notas disciplina
+			$this->db->where("anolectivo_id", $anolectivo);								// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+			$this->db->where("turma_id", $turma);										// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+			$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id', 'left');			// join turma e matricula
+			$this->db->group_by('aula.aluno_id');											// agrupamento
+			$this->db->order_by("nome", "asc");  										// Ordenar a travez do nome
+			$dados['num_faltas'] = $this->db->get()->result();							// retorna várias linhas
 			/* ===========================================================================================================*/
 			$this->db->select('*');													  					// select tudo
-			$this->db->from('prof_turma');												 				// da tbl matricula
-			$this->db->where("anolectivo_id", $anolectivo);												// onde
-			$this->db->where("turma_id", $turma);									 					// onde
-			$this->db->join('funcionario', 'funcionario.id_funcionario = prof_turma.funcionario_id');	// join ano lectivo e matricula
+			$this->db->from('prof_turma');												 				// da tbl prof_turma
+			$this->db->where("anolectivo_id", $anolectivo);												// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+			$this->db->where("turma_id", $turma);									 					// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+			$this->db->join('funcionario', 'funcionario.id_funcionario = prof_turma.funcionario_id');	// join funcionario e prof_turma
 			$dados["prof"] = $this->db->get()->row();													// retorna 1 linha
 			/* ===========================================================================================================*/
 			$this->load->view('layout/cabecalho');
