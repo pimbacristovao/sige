@@ -89,27 +89,28 @@ class Matricula extends CI_Controller
 	{
 		$id_matricula = $this->input->get("id_matricula");
 		/*===========================================================================================================================*/ 
-		$this->db->select('*');
-		$this->db->from('matricula');
-		$this->db->where('id_matricula', $id_matricula);
-		$this->db->join('aluno',  	  'aluno.id_aluno = matricula.aluno_id');
-		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');
-		$this->db->join('turma',  	  'turma.id_turma = matricula.turma_id');
-		$this->db->join('classe', 	  'classe.id_classe  = turma.classe_id');				// Join tbl classe [turma]
-		$this->db->join('periodo',    'periodo.id_periodo = turma.periodo_id');
-		$this->db->join('sala',  	  'sala.id_sala = turma.sala_id');
-		$this->db->join('funcionario','funcionario.id_funcionario = matricula.funcionario_id');
-		$dados["matricula_row"] = $this->db->get()->row();									// Join Matricula
+		$this->db->select('*');															// selecione tudo
+		$this->db->from('matricula');													// da tbl matricula
+		$this->db->where('id_matricula', $id_matricula);								// onde o valor da coluna "id_matricula" é igual ao valor passado como parâmetro $id_matricula
+		$this->db->join('aluno',  	  'aluno.id_aluno = matricula.aluno_id');			// Join tbl aluno e matricula
+		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');	// Join tbl anolectivo matricula
+		$this->db->join('turma',  	  'turma.id_turma = matricula.turma_id');			// Join tbl turma e matricula
+		$this->db->join('classe', 	  'classe.id_classe  = turma.classe_id');			// Join tbl classe e turma
+		$this->db->join('periodo',    'periodo.id_periodo = turma.periodo_id');			// Join tbl periodo e turma
+		$this->db->join('turma_sala',    'turma_sala.id_turma = turma.id_turma');		// Join tbl turma_sala  e turma
+		$this->db->join('sala',  	  'sala.id_sala = turma_sala.id_sala');				// Join tbl sala e turma_sala
+		$this->db->join('funcionario','funcionario.id_funcionario = matricula.funcionario_id');	// Join tbl funcionario e matricula
+		$dados["matricula_row"] = $this->db->get()->row();									// retorna uma linha
 		/*===========================================================================================================================*/ 
 		$this->db->select('*');																// Selecione Tudo
 		$this->db->from('matricula');														// Da tabela Matricula
-		$this->db->where('id_matricula', $id_matricula);									// Aonde o Id_Aluno = $id (get id aluno)
-		$this->db->join('aluno', 'aluno.id_aluno = matricula.aluno_id');					// Join [Turma = Matricula]
-		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id'); 		// Join [Ano lectivo = Matricula]
-		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');	
-		$this->db->join('classe', 'classe.id_classe  = turma.classe_id');					// Join tbl classe [turma]
-		$this->db->join('disciplina', 'disciplina.classe_id = classe.id_classe');			// Join [Disciplina = Classe]
-		$dados["matricula"] = $this->db->get()->result();									// Join Matricula	   
+		$this->db->where('id_matricula', $id_matricula);									// onde o valor da coluna "id_matricula" é igual ao valor passado como parâmetro $id_matricula
+		$this->db->join('aluno', 'aluno.id_aluno = matricula.aluno_id');					// Join turma e matricula
+		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');		// Join tbl anolectivo matricula
+		$this->db->join('turma',  	  'turma.id_turma = matricula.turma_id');				// Join tbl turma e matricula
+		$this->db->join('classe', 	  'classe.id_classe  = turma.classe_id');				// Join tbl classe e turma
+		$this->db->join('disciplina', 'disciplina.classe_id = classe.id_classe');			// Join disciplina e Classe
+		$dados["matricula"] = $this->db->get()->result();									// retorna várias linhas	   
 		$dados["matricula_select"] = $this->Matricula_Model->retorna_matricula($id_matricula);
 		/*===========================================================================================================================*/
 		$this->load->view('layout/cabecalho_secretaria');
