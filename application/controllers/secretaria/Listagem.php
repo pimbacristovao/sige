@@ -462,34 +462,34 @@ class Listagem extends CI_Controller
 		$this->db->from('matricula');												 	// da tbl matricula
 		$this->db->where("anolectivo_id", $anolectivo);									// onde
         $this->db->where("turma_id", $turma_id);									 	// onde
-		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');				// join turma e matricula
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');				// Join tbl classe [turma]
-		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');	// join ano lectivo e matricula
-		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');			// join periodo e turma
-		$this->db->join('sala', 'sala.id_sala = turma.sala_id');		 		// Join turma e matricula
+		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');				// join turma e turma
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');				// Join tbl classe e [turma]
+		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');	// join ano lectivo e [matricula]
+		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');			// join tbl periodo e [turma]
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');		 		// Join sala e [turma_sala]
 		$dados["listagem_alunos"] = $this->db->get()->row();							// retorna 1 linha
-		if ( empty($dados["listagem_alunos"]) )
+		if (empty($dados["listagem_alunos"]))
 		{
 			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>TURMA OU ANO LECTIVO SEM ALUNOS MATRICULADOS</div>");
 			redirect('secretaria/listagem');
 		}
-		elseif  ( !empty($dados["listagem_alunos"]) )
-		{
-		$this->db->select('*');															// select tudo
-		$this->db->from('matricula');													// da tbl matricula
-		$this->db->where("anolectivo_id", $anolectivo);									// onde
-        $this->db->where("turma_id", $turma_id);										// onde 
-		$this->db->order_by("nome", "asc");  											// Ordenar a travez do nome
-		$this->db->join('aluno', 'aluno.id_aluno = matricula.aluno_id');		 		// Join aluno e matricula
-        $this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id'); 	// Join anolectivo e matricula
-		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');		 		// Join turma e matricula
-		$dados['alunos'] = $this->db->get()->result();									// retorna várias linhas
-		/* ===========================================================================================================*/
-		$this->load->view('layout/cabecalho');
-		$this->load->view('layout/menu_lateral_secretaria');
-		$this->load->view('conteudo/_secretaria/_listagem/listar_aluno_turma', $dados);
-		$this->load->view('layout/rodape');
-		$this->load->view('layout/script');
+		elseif  (!empty($dados["listagem_alunos"])) {
+			$this->db->select('*');															// select tudo
+			$this->db->from('matricula');													// da tbl matricula
+			$this->db->where("anolectivo_id", $anolectivo);									// onde
+			$this->db->where("turma_id", $turma_id);										// onde 
+			$this->db->order_by("nome", "asc");  											// Ordenar a travez do nome
+			$this->db->join('aluno', 'aluno.id_aluno = matricula.aluno_id');		 		// Join aluno e matricula
+			$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id'); 	// Join anolectivo e matricula
+			$this->db->join('turma', 'turma.id_turma = matricula.turma_id');		 		// Join turma e matricula
+			$dados['alunos'] = $this->db->get()->result();									// retorna várias linhas
+			/* ===========================================================================================================*/
+			$this->load->view('layout/cabecalho');
+			$this->load->view('layout/menu_lateral_secretaria');
+			$this->load->view('conteudo/_secretaria/_listagem/listar_aluno_turma', $dados);
+			$this->load->view('layout/rodape');
+			$this->load->view('layout/script');
 		}
 	}
 	/*					 							listar alunos/ano/turma
@@ -499,22 +499,23 @@ class Listagem extends CI_Controller
 		$this->db->select('*');															// select tudo
 		$this->db->from('matricula');													// da tbl matricula
 		$this->db->where("anolectivo_id", $anolectivo);									// onde
-    $this->db->where("turma_id", $turma);										// onde 
+    	$this->db->where("turma_id", $turma);											// onde 
 		$this->db->order_by("nome", "asc");  											// Ordenar a travez do nome
 		$this->db->join('aluno', 'aluno.id_aluno = matricula.aluno_id');		 		// Join aluno e matricula
-    $this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id'); 	// Join anolectivo e matricula
+    	$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id'); 	// Join anolectivo e matricula
 		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');		 		// Join turma e matricula
 		$dados['alunos'] = $this->db->get()->result();									// retorna várias linhas
 		/* ===========================================================================================================*/
 		$this->db->select('*');													  		// select tudo
 		$this->db->from('matricula');												 	// da tbl matricula
 		$this->db->where("anolectivo_id", $anolectivo);									// onde
-    $this->db->where("turma_id", $turma);									 	// onde
+    	$this->db->where("turma_id", $turma);									 		// onde
 		$this->db->join('turma', 'turma.id_turma = matricula.turma_id');				// join turma e matricula
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');				// join classe e matricula
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');				// join classe e turma
 		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');	// join ano lectivo e matricula
 		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');			// join periodo e turma
-		$this->db->join('sala', 'sala.id_sala = turma.sala_id');		 		// Join turma e matricula
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');			// join turma_sala e turma
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');		 			// Join sala e turma_Sala
 		$dados["listagem_alunos"] = $this->db->get()->row();							// retorna 1 linha
 		/* ===========================================================================================================*/
 		$this->db->select('*');													  					// select tudo
