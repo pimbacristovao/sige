@@ -92,7 +92,7 @@ class Professor extends CI_Controller
 		if ( empty($dados["prof"]) )
 		{
 			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>NÃO EXISTEM ALUNOS MATRICULADOS NA TURMA E ANO LECTIVO SELECIONADO</div>");	
-			redirect('secretaria/professor/listar_professores/'.$prof);
+			redirect('secretaria/professor/listar_professores/'.$id_prof);
 		}
 		elseif ( !empty($dados["prof"]) )
 		{
