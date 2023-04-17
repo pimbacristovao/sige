@@ -82,7 +82,9 @@ class Encarregados extends CI_Controller
 		$this->load->model("Select_Dinamico_Model", "encarregado");
 		$dados['anolectivo'] = $this->encarregado->get_anolectivo();
 		/* ------------------------------------------------------------------------------------------------------------- */
-		$this->db->where('id_encarregado', $id);
+		$this->db->select('encarregados.*, encarregado_aluno.id_aluno');
+		$this->db->join('encarregado_aluno', 'encarregado_aluno.id_encarregado = encarregados.id_encarregado');
+		$this->db->where('encarregados.id_encarregado', $id);
 		$dados['encarregado'] = $this->db->get('encarregados')->result();
 		/*------------------------------------------------*/
 		$this->load->view('layout/cabecalho_secretaria');
@@ -95,7 +97,8 @@ class Encarregados extends CI_Controller
 	{
 		$this->Encarregados_Model->actualizar();		
 		$id_aluno = $this->input->post('aluno_encarregado'); 				
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ENCARREGADO ALTERADO COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center mensagem'>Informações do encarregado alteradas com sucessso.<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+		<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); 
 	}
 }
