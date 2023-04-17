@@ -68,14 +68,14 @@ class Turma_Model extends CI_Model {
     /*-------------------------------- SELECT DINAMICO ------------------------------------*/
     function get_sala(){
         $this->db->select('*');
-        return $this->db->get('sala')->result();
+        return $this->db->get('sala')->result();	// retorna os resultados no formato de um objeto de matriz(array asspciativo).
     }
     function get_classe(){
         $this->db->select('*');
-        return $this->db->get('classe')->result();
+        return $this->db->get('classe')->result();	// retorna os resultados no formato de um objeto de matriz(array asspciativo).
     }
     function get_periodo(){
         $this->db->select('*');
-        return $this->db->get('periodo')->result();
+        return $this->db->get('periodo')->result();	// retorna os resultados no formato de um objeto de matriz(array asspciativo).
     }
 }
