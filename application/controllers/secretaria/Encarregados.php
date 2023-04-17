@@ -37,6 +37,7 @@ class Encarregados extends CI_Controller
 	//  INSERIR REGISTROS NA TABELA UTILIZADORES
 	public function guardar()
 	{
+		// Verifica se o encarregado já foi inserido 
 		if ($this->Encarregados_Model->verificar_encarregado()){
 			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>O encarregado que tentou adicionar já existe.
 				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
