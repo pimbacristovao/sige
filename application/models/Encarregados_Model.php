@@ -7,6 +7,28 @@ class Encarregados_Model extends CI_Model
     public function listarencarregados(){
         return $this->db->get("encarregados")->result_array();
     }
+    /*=====================VERIFICAR ENCARREGADOS=====================*/
+	public function verificar_encarregado()
+	{
+		// verifica se já existe um encarregado com mesmo nome, telemovel e email
+		$nome_encarregado = $this->input->post("nome_encarregado");
+		$telemovel_encarregado = $this->input->post("telemovel_encarregado");
+		$email_encarregado = $this->input->post("email_encarregado");
+
+		// recupera dados da tabela 'encarregados' da base de dados
+		$result = $this->db->from('encarregados')										
+							// filtra os resultados combinando o campo 'nome_encarregado' com o valor fornecido na variável $nome_encarregado
+							->where("nome_encarregado", $nome_encarregado)
+							// filtra os resultados combinando o campo 'telemovel_encarregado' com o valor fornecido na variável $telemovel_encarregado
+							->where("telemovel_encarregado", $telemovel_encarregado)
+							// filtra os resultados combinando o campo 'email_encarregado' com o valor fornecido na variável $email_encarregado
+							->where("email_encarregado", $email_encarregado)
+							// executa a consulta e obtém o objeto de resultado
+							->get();
+
+		// verifica se o número de linhas retornadas pela consulta é diferente de zero, então retorna verdadeiro, caso contrário, retorna falso.
+		return $result->num_rows() !== 0 ? true : false; 
+	}
     /*=====================INICIO=CRIAR=NOVO=ENCARREGADOS=====================*/
 	public function novoencarregados()
 	{
