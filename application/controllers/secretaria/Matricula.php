@@ -42,7 +42,14 @@ class Matricula extends CI_Controller
 	/*					INSERIR REGISTROS NA TABELA MATRICULA 
 	=======================================================================*/
 	public function guardar()
-	{		
+	{	
+		if ($this->Matricula_Model->verificar_matricula()) {
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center mensagem'>Já foi feita a matricula.
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
+			$id_aluno = $this->input->post('aluno_id'); 			  // Pega o ultimo id do aluno inserido
+			redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno);
+		}	
 		$this->Matricula_Model->novamatricula();
 		$id_aluno = $this->input->post('aluno_id'); 			  // Pega o ultimo id do aluno inserido
 		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>MATRICULA REALIZADA COM SUCESSO</div>");	
