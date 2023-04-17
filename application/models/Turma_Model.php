@@ -48,18 +48,22 @@ class Turma_Model extends CI_Model {
     }
 
     //  ACTUALIZA REGISTROS NA TABELA TURMA
-    public function actualizar(){
+	public function actualizar()
+    {
         $id = $this->input->post('id_turma');
-        $turma = array(
+		$sala_id = $this->input->post('numero_sala');
+		$turma = array(
 			"nome_turma" => $this->input->post('nome_turma'),
-			/*-------------------------------- SELECT DINAMICO ------------------------------------*/
-			"sala_id" => $this->input->post('numero_sala'),
 			"classe_id" => $this->input->post('nome_classe'),
 			"periodo_id" => $this->input->post('nome_periodo')
-			/*-------------------------------------------------------------------------------------*/ 
 		);
-        $this->db->where('id_turma', $id);
-        return $this->db->update('turma', $turma);
+		$this->db->trans_start();				// Inicia uma transação com a base de dados
+		$this->db->where('id_turma', $id);		// filtra os resultados combinando o campo 'id_turma' com o valor fornecido na variável $id
+		$this->db->update("turma", $turma);		// Atualiza as informações na tbl turma usando os dados fornecidos pela variável "turma"
+		$this->db->where('id_turma', $id);		// Seleciona linha(s) da tabela "turma" onde a coluna 'id_turma' é igual ao parâmetro $id fornecido
+		$this->db->set('id_sala', $sala_id);	// Define o valor da coluna 'id_sala' como sendo o parâmetro $sala_id
+		$this->db->update("turma_sala");		// Atualiza a tabela "turma_sala" com os novos valores definidos acima
+		$this->db->trans_complete();			// Completa a transacção com a base de dados		
     }
     /*-------------------------------- SELECT DINAMICO ------------------------------------*/
     function get_sala(){
