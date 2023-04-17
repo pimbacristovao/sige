@@ -37,6 +37,13 @@ class Encarregados extends CI_Controller
 	//  INSERIR REGISTROS NA TABELA UTILIZADORES
 	public function guardar()
 	{
+		if ($this->Encarregados_Model->verificar_encarregado()){
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>O encarregado que tentou adicionar já existe.
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
+			$id_aluno = $this->input->post('aluno_encarregado'); 				
+			redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno);
+		}
 		$this->Encarregados_Model->novoencarregados();		
 		$id_aluno = $this->input->post('aluno_encarregado'); 				
 		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ENCARREGADO SALVO COM SUCESSO</div>");	
