@@ -235,7 +235,8 @@
             </div><!-- end tab-content -->
         </div><!-- end tab-content -->
         <!--------------------------------------------------------------------------------------------------------->
-        <div class="text-uppercase">
+		<!-- Div responsável por apresentar os dados do funcionário que cadastrou o aluno -->
+        <!-- <div class="text-uppercase">
             <h6>
                 <strong>Inserido por:
                     <span class="text-primary"><?= $aluno_funcionario->nome_funcionario; ?></span>
@@ -246,5 +247,5 @@
                     <span class="text-primary"><?= date('d/m/Y - H:i:s', strtotime($aluno['created'])); ?></span>
                 </strong>
             </h6>
-        </div>
+        </div> -->
     </div>
