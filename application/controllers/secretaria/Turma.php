@@ -79,8 +79,14 @@ class Turma extends CI_Controller
 	//  INSERIR REGISTROS NA TABELA TURMA
 	public function guardar()
 	{
+		if ($this->Turma_Model->verificar_turma()) {
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>A turma que tentou criar já existe.
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
+			redirect('secretaria/turma/nova_turma');
+		}
 		$this->Turma_Model->novaturma();
-		redirect('secretaria/turma/nova_turma','refresh');
+		redirect('secretaria/turma/listar_turma');
 	}
 	/*=====================INICIO=APAGAR=TURMA======================*/
 	//	APAGAR REGISTROS NA TABELA turma

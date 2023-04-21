@@ -15,7 +15,28 @@ class Turma_Model extends CI_Model {
 		$this->db->order_by("nome_turma", "asc");									// Ordem
 		return $this->db->get()->result_array();								// Retorna uma matriz(array) contendo os resultados da consulta
     }
+	/* 			VERIFICA SE UMA DETERMINADA TURMA JÁ FOI CRIADA
+	============================================================================= */
+	public function verificar_turma()
+	{
+		$nome_turma = $this->input->post('nome_turma');
+		$classe_id = $this->input->post('nome_classe');
+		$periodo_id = $this->input->post('nome_periodo');
 
+		// recupera dados da tabela 'turma' da base de dados
+		$result = $this->db->from('turma')										
+							// filtra os resultados combinando o campo 'nome_turma' com o valor fornecido na variável $nome_turma
+							->where("nome_turma", $nome_turma)
+							// filtra os resultados combinando o campo 'classe_id' com o valor fornecido na variável $classe_id
+							->where("classe_id", $classe_id)
+							// filtra os resultados combinando o campo 'periodo_id' com o valor fornecido na variável $periodo_id
+							->where("periodo_id", $periodo_id)
+							// executa a consulta e obtém o objeto de resultado
+							->get();
+
+		// verifica se o número de linhas retornadas pela consulta é diferente de zero, então retorna verdadeiro, caso contrário, retorna falso.
+		return $result->num_rows() !== 0 ? true : false; 
+	}
     //  INSERIR REGISTROS NA TABELA TURMA
     public function novaturma()
     {
