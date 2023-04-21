@@ -48,30 +48,34 @@ class Turma_Model extends CI_Model {
     }
 
     //  ACTUALIZA REGISTROS NA TABELA TURMA
-    public function actualizar(){
+	public function actualizar()
+    {
         $id = $this->input->post('id_turma');
-        $turma = array(
+		$sala_id = $this->input->post('numero_sala');
+		$turma = array(
 			"nome_turma" => $this->input->post('nome_turma'),
-			/*-------------------------------- SELECT DINAMICO ------------------------------------*/
-			"sala_id" => $this->input->post('numero_sala'),
 			"classe_id" => $this->input->post('nome_classe'),
 			"periodo_id" => $this->input->post('nome_periodo')
-			/*-------------------------------------------------------------------------------------*/ 
 		);
-        $this->db->where('id_turma', $id);
-        return $this->db->update('turma', $turma);
+		$this->db->trans_start();				// Inicia uma transação com a base de dados
+		$this->db->where('id_turma', $id);		// filtra os resultados combinando o campo 'id_turma' com o valor fornecido na variável $id
+		$this->db->update("turma", $turma);		// Atualiza as informações na tbl turma usando os dados fornecidos pela variável "turma"
+		$this->db->where('id_turma', $id);		// Seleciona linha(s) da tabela "turma" onde a coluna 'id_turma' é igual ao parâmetro $id fornecido
+		$this->db->set('id_sala', $sala_id);	// Define o valor da coluna 'id_sala' como sendo o parâmetro $sala_id
+		$this->db->update("turma_sala");		// Atualiza a tabela "turma_sala" com os novos valores definidos acima
+		$this->db->trans_complete();			// Completa a transacção com a base de dados		
     }
     /*-------------------------------- SELECT DINAMICO ------------------------------------*/
     function get_sala(){
         $this->db->select('*');
-        return $this->db->get('sala')->result();
+        return $this->db->get('sala')->result();	// retorna os resultados no formato de um objeto de matriz(array asspciativo).
     }
     function get_classe(){
         $this->db->select('*');
-        return $this->db->get('classe')->result();
+        return $this->db->get('classe')->result();	// retorna os resultados no formato de um objeto de matriz(array asspciativo).
     }
     function get_periodo(){
         $this->db->select('*');
-        return $this->db->get('periodo')->result();
+        return $this->db->get('periodo')->result();	// retorna os resultados no formato de um objeto de matriz(array asspciativo).
     }
 }
