@@ -379,16 +379,25 @@ class Aluno extends CI_Controller
 		$name = date('YmdHis');
 		$fotografia = $name.'.jpg'; 									// a  fotografia do individuo;
 		$fp = fopen('_assets/upload/' . $fotografia, 'w');
-		fwrite($fp, $unencoded);
-		fclose($fp);
-		$aluno = array(
-			"id_aluno" => $id,
-			"photo" => $fotografia
-		);
-		/* ===================================================================================================================== */
-		$this->db->where('id_aluno', $id);
-		$this->db->update('aluno', $aluno);
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO</div>");	
-		redirect('secretaria/aluno/detalhe?id_aluno='.$id); // redireciona para o pefil do aluno
+		if ($fp) {
+			fwrite($fp, $unencoded);
+			fclose($fp);
+			$aluno = array(
+				"id_aluno" => $id,
+				"photo" => $fotografia
+			);
+			/* ===================================================================================================================== */
+			$this->db->where('id_aluno', $id);
+			$this->db->update('aluno', $aluno);	// Atualiza as informções do aluno com o dado da variável array
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
+			redirect('secretaria/aluno/detalhe?id_aluno='.$id); // redireciona para o pefil do aluno
+		} else {
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>ERRO AO SALVAR FOTOGRAFIA
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
+			redirect('secretaria/aluno/carregar_imagem?id_aluno='.$id); // redireciona para página de alteração de imagem do aluno
+		}
     }
 }
