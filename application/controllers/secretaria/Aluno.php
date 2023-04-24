@@ -251,7 +251,7 @@ class Aluno extends CI_Controller
 		{
 			$this->load->view('layout/cabecalho_secretaria');
 			$this->load->view('layout/menu_lateral_secretaria');
-			$this->load->view('conteudo/_secretaria/_aluno/perfil_aluno_1', $dados);
+			$this->load->view('conteudo/_secretaria/_aluno/perfil_aluno_direccao', $dados);
 			$this->load->view('layout/modal_aluno');
 			$this->load->view('layout/rodape');
 			$this->load->view('layout/script');
