@@ -54,7 +54,9 @@ class Professor extends CI_Controller
 		$dados["prof"] = $this->db->get()->row();													// retorna 1 linha
 		if ( empty($dados["prof"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>PROFESSOR SELECIONADO NÃO TEM TURMA</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>PROFESSOR SELECIONADO NÃO TEM TURMA
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/professor/listar_professor');
 		}
 		elseif ( !empty($dados["prof"]) )
@@ -91,7 +93,9 @@ class Professor extends CI_Controller
 		$dados["prof"] = $this->db->get()->row();												 // retorna 1 linha
 		if ( empty($dados["prof"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>NÃO EXISTEM ALUNOS MATRICULADOS NA TURMA E ANO LECTIVO SELECIONADO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>NÃO EXISTEM ALUNOS MATRICULADOS NA TURMA E ANO LECTIVO SELECIONADO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/professor/listar_professores/'.$id_prof);
 		}
 		elseif ( !empty($dados["prof"]) )

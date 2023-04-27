@@ -44,7 +44,7 @@ class Matricula extends CI_Controller
 	public function guardar()
 	{	
 		if ($this->Matricula_Model->verificar_matricula()) {
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center mensagem'>Já foi feita a matricula.
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center mensagem'>JÁ FOI FEITA A MATRICULA
 				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 				<span aria-hidden='true'>&times;</span></button></div>");	
 			$id_aluno = $this->input->post('aluno_id'); 			  // Pega o ultimo id do aluno inserido
@@ -52,7 +52,9 @@ class Matricula extends CI_Controller
 		}	
 		$this->Matricula_Model->novamatricula();
 		$id_aluno = $this->input->post('aluno_id'); 			  // Pega o ultimo id do aluno inserido
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>MATRICULA REALIZADA COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>MATRICULA REALIZADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); // Redireciona para o perfifil do aluno
 	}
 	/*				NICIO EXCLUIR MATRICULA
@@ -61,7 +63,9 @@ class Matricula extends CI_Controller
 	{
 		$this->load->model("Matricula_Model");
 		$this->Matricula_Model->apagarmatricula($id);
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>MATRICULA EXCLUIDA COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>MATRICULA EXCLUIDA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno);
 	}
 	/*					INICIO ACTUALIAZAR MATRICULA 
@@ -87,7 +91,9 @@ class Matricula extends CI_Controller
 	{
 		$this->Matricula_Model->actualizar_matricula();
 		$id_aluno = $this->input->post('aluno_id'); 			  		//Pega o ultimo id do aluno inserido
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>MATRICULA ALTERADA COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>MATRICULA ALTERADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); 		// Redireciona para o perfifil do aluno
 	}
 	/*						Detalhes da Matricula
@@ -499,7 +505,9 @@ class Matricula extends CI_Controller
 		$id_classe 		  = $this->input->post('classe');     	//	pega o id da classe
 		$anolectivo_id  = $this->input->post('anolectivo');		//  pega o id do anolectivo
 		$turma_id  	  	= $this->input->post('turma');			  //  pega o id da turma
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>DISCIPLINAS ADICIONADA COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>DISCIPLINAS ADICIONADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/matricula/caderneta_aluno/'.$id_matricula.'/'.$id_classe.'/'.$this->session->userdata('nivel_acesso'));
 	}
 	/*				NICIO EXCLUIR MATRICULA
@@ -509,7 +517,9 @@ class Matricula extends CI_Controller
 		$this->load->model("Matricula_Model");
 		$this->Matricula_Model->apagardisciplina($id);
 		/* ========================================================================================================================== */ 
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>DISCIPLINA EXCLUIDA COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>DISCIPLINA EXCLUIDA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('secretaria/matricula/caderneta_aluno/'.$id_matricula.'/'.$id_classe.'/'.$this->session->userdata('nivel_acesso'));
 	}
 	/*						Notas 
@@ -574,10 +584,14 @@ class Matricula extends CI_Controller
 		/* -------------------------------------------------------------------------------------------------------------------------------- */
 		if(($this->input->post('mac_1') > 10) || ($this->input->post('cpp_1') > 10) || 
 			($this->input->post('cpp_1') < 0)  || ($this->input->post('mac_1') < 0)){
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>INSIRA NOTA NO INTERVALO DE 0 A 10</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>INSIRA NOTA NO INTERVALO DE 0 A 10
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/matricula/add_notas/'.$id_notas_disciplina.'/'.$classe_id);		
 		}elseif(($this->input->post('mac_1') === "" ) || (($this->input->post('cpp_1') === ""))){
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>CAMPO MAC OU CPP VAZIO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>CAMPO MAC OU CPP VAZIO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/matricula/add_notas/'.$id_notas_disciplina.'/'.$classe_id);	
 		}else{
 			$this->Matricula_Model->salvar_nota_1();
@@ -594,10 +608,14 @@ class Matricula extends CI_Controller
 		/* --------------------------------------------------------------------------------------------------------------------------------- */ 
 		if(($this->input->post('mac_2') > 10) || ($this->input->post('cpp_2') > 10) || 
 			($this->input->post('cpp_2') < 0)  || ($this->input->post('mac_2') < 0)){
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>INSIRA NOTA NO INTERVALO DE 0 A 10</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>INSIRA NOTA NO INTERVALO DE 0 A 10
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/matricula/add_notas/'.$id_notas_disciplina.'/'.$classe_id);			
 		}elseif(($this->input->post('mac_2') === "") || (($this->input->post('cpp_2') === ""))){
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>CAMPO MAC OU CPP VAZIO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>CAMPO MAC OU CPP VAZIO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('secretaria/matricula/add_notas/'.$id_notas_disciplina.'/'.$classe_id);
 		}else{
 			$this->Matricula_Model->salvar_nota_2();
@@ -615,10 +633,14 @@ class Matricula extends CI_Controller
 		if(($this->input->post('mac_3') > 10) || ($this->input->post('cpp_3') > 10) || 
 			($this->input->post('cpp_3') < 0) || ($this->input->post('mac_3') < 0) ||
 			($this->input->post('ce') < 0) || ($this->input->post('ce') > 10)) {
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>INSIRA NOTA NO INTERVALO DE 0 A 10</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>INSIRA NOTA NO INTERVALO DE 0 A 10
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/matricula/add_notas/'.$id_notas_disciplina.'/'.$classe_id);		
 		}elseif(($this->input->post('mac_3') === "") || (($this->input->post('cpp_3') === "")) || (($this->input->post('ce') === ""))){
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>CAMPO MAC OU CPP OU CE VAZIO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>CAMPO MAC OU CPP OU CE VAZIO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/matricula/add_notas/'.$id_notas_disciplina.'/'.$classe_id);		
 		}else{
 			$this->Matricula_Model->salvar_nota_3();
@@ -634,11 +656,15 @@ class Matricula extends CI_Controller
 		$id_turma 	   = $this->input->post('turma');       //	pega o id da turma
 		/* ------------------------------------------------------------------------------------------------------------------------- */
 		if (empty($aluno_id)){
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>SELECIONE PELO MENOS 1 ALUNO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>SELECIONE PELO MENOS 1 ALUNO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/listagem/listar_assiduidade_turma/'.$id_anolectivo.'/'.$id_turma);
 		} elseif (!empty($aluno_id)){
 			$this->Matricula_Model->marcar_falta();
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FALTAS MARCADA COM SUCESSO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FALTAS MARCADA COM SUCESSO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/listagem/listar_assiduidade_turma/'.$id_anolectivo.'/'.$id_turma);
 		}
 	}
@@ -651,7 +677,9 @@ class Matricula extends CI_Controller
 		$id_aluno      = $this->input->post('aluno');		// pega o id do aluno
 		/* ----------------------------------------------------------------------------------------------------------------------- */
 		$this->Matricula_Model->justificar_falta();
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FALTA JUSTIFICADA COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FALTA JUSTIFICADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('secretaria/listagem/mapa_assiduidade/'.$id_anolectivo.'/'.$id_turma.'/'.$id_aluno);
 	}
 }

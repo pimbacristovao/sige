@@ -51,7 +51,9 @@ class Listagem extends CI_Controller
 		$dados["listagem_alunos"] = $this->db->get()->row();										// retorna 1 linha
 		if ( empty($dados["listagem_alunos"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>NÃO EXISTEM ALUNOS MATRICULADOS NA TURMA E ANO LECTIVO SELECIONADO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>NÃO EXISTEM ALUNOS MATRICULADOS NA TURMA E ANO LECTIVO SELECIONADO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/professor/turmas_professor_coordenacao/'.$prof);
 		}
 		elseif  ( !empty($dados["listagem_alunos"]) )
@@ -93,7 +95,9 @@ class Listagem extends CI_Controller
 		$dados["listagem_alunos"] = $this->db->get()->row();										// retorna 1 linha
 		if ( empty($dados["listagem_alunos"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>NÃO EXISTEM ALUNOS MATRICULADOS NA TURMA E ANO LECTIVO SELECIONADO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>NÃO EXISTEM ALUNOS MATRICULADOS NA TURMA E ANO LECTIVO SELECIONADO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('secretaria/professor/turmas_professor/'.$prof);
 		}
 		elseif  ( !empty($dados["listagem_alunos"]) )

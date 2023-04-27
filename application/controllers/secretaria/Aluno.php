@@ -28,7 +28,9 @@ class Aluno extends CI_Controller
 	public function apagar($id)
 	{
 		$this->Aluno_Model->apagaraluno($id);
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>ALUNO EXCLUIDO COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>ALUNO EXCLUIDO COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('home/secretaria');
 	}
 	//=================	CHAMA A VIEW DO [FURMULARIO CRIAR ALUNO] =================  
@@ -134,7 +136,9 @@ class Aluno extends CI_Controller
 			$this->load->view('layout/script');
 			} else {	
 			$this->Aluno_Model->novoaluno(); // Carrega o Model novoaluno		
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ALUNO ADICIONADO COM SUCESSO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ALUNO ADICIONADO COM SUCESSO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			$id_aluno = $this->db->insert_id(); // Pega o ultimo ID inserido na BD
 			redirect('secretaria/aluno/detalhe?id_aluno=' . $id_aluno); // Redireciona Para o Pefil do Aluno
 		}
@@ -164,7 +168,9 @@ class Aluno extends CI_Controller
 	{
 		$this->Aluno_Model->alterar($id);
 		$id_aluno = $this->input->post('id_aluno'); //	Pega o ultimo id do aluno inserido
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ALUNO ALTERADO COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ALUNO ALTERADO COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); // Redireciona para o perfifil do aluno
 	}
 	/*----------------------------- NUMERO DE PROCESSO -----------------------------*/
@@ -172,7 +178,9 @@ class Aluno extends CI_Controller
 	{
 		$id_aluno = $this->input->post('aluno_id'); //	Pega o id do aluno inserido
 		$this->Aluno_Model->num_processo($id);
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>NÚMERO DE PROCESSO ADICIONADO COM SUCESSO</div>");	
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>NÚMERO DE PROCESSO ADICIONADO COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/aluno/detalhe?id_aluno='.$id_aluno); // Redireciona para o perfifil do aluno
 	}
 	//							 FUNCAO PESQUISAR [AUTO COMPLETE] 
@@ -195,7 +203,9 @@ class Aluno extends CI_Controller
 		$dados['listagem'] = $this->Busca_Model->buscar_aluno($_POST);
 		if ( empty($dados["listagem"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>NENHUM ALUNO ENCONTRADO</div>");	
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>NENHUM ALUNO ENCONTRADO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");	
 			redirect('home/secretaria');
 		}
 		elseif ( !empty($dados["listagem"]) )
@@ -348,7 +358,9 @@ class Aluno extends CI_Controller
 				);
 				$this->db->where('id_aluno', $id);
 				$this->db->update('aluno', $aluno);
-				echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO</div>");	
+				echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO
+					<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+					<span aria-hidden='true'>&times;</span></button></div>");	
 				redirect('secretaria/aluno/detalhe?id_aluno='.$id); // redireciona para o pefil do aluno
 			}
 		}

@@ -43,7 +43,9 @@ class Anolectivo extends CI_Controller
         );
 		$this->load->model("Anolectivo_Model");
 		$this->Anolectivo_Model->novoanolectivo($ano);
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ANO LECTIVO ABERTO COM SUCESSO</div>");
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>ANO LECTIVO ABERTO COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('secretaria/anolectivo/novo_ano','refresh');
 	}
 /*=====================INICIO=APAGAR=ANO=LECTIVO=====================*/

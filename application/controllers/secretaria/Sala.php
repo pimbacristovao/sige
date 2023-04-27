@@ -118,7 +118,9 @@ class Sala extends CI_Controller
 		$dados['turmas'] = $this->db->get()->result();									// retorna várias linhas
 		if ( empty($dados["turmas"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS</div>");
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('secretaria/sala/listar_salas');
 		}
 		elseif  ( !empty($dados["turmas"]) )
@@ -148,7 +150,9 @@ class Sala extends CI_Controller
 		$dados['turmas'] = $this->db->get()->result();									// retorna várias linhas
 		if ( empty($dados["turmas"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS</div>");
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('secretaria/sala/listar_salas_coordenacao');
 		}
 		elseif  ( !empty($dados["turmas"]) )

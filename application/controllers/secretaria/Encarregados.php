@@ -39,7 +39,7 @@ class Encarregados extends CI_Controller
 	{
 		// Verifica se o encarregado já foi inserido 
 		if ($this->Encarregados_Model->verificar_encarregado()){
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>O encarregado que tentou adicionar já existe.
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>O 	ENCARREGADO QUE TENTOU ADICIONAR JÁ EXISTE
 				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 				<span aria-hidden='true'>&times;</span></button></div>");	
 			$id_aluno = $this->input->post('aluno_encarregado'); 				

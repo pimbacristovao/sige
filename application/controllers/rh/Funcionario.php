@@ -136,7 +136,9 @@ class Funcionario extends CI_Controller
 	{
 		$this->Funcionario_Model->actualizar();
 		$id_funcionario = $this->input->post('id_funcionario'); //	Pega o ultimo id do funcionario inserido
-		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>INFORMAÇÕES DO FUNCIONÁRIO ACTUALIZADA COM SUCESSO</div>");
+		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>INFORMAÇÕES DO FUNCIONÁRIO ACTUALIZADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('rh/funcionario/detalhe_rh?id_funcionario=' . $id_funcionario);
 	}
 
@@ -174,10 +176,14 @@ class Funcionario extends CI_Controller
 		/* -------------------------------------------------------- */
 		if (password_verify($password_old, $dados['password'][0]->password)) {
 			$this->Funcionario_Model->alterar_password();
-			echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>PALAVRA PASSE ALTERADA COM SUCESSO</div>");
+			echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>PALAVRA PASSE ALTERADA COM SUCESSO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('rh/funcionario/detalhe/' . $this->session->userdata('id_funcionario') . '/' . $this->session->userdata('nivel_acesso'));
 		} else {
-			echo $this->session->set_flashdata('msg', "<div class='alert alert-danger text-center'>NÃO FOI POSSIVEL ALTERAR A PALAVRA PASSE</div>");
+			echo $this->session->set_flashdata('msg', "<div class='alert alert-danger text-center'>NÃO FOI POSSIVEL ALTERAR A PALAVRA PASSE
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('rh/funcionario/detalhe/' . $this->session->userdata('id_funcionario') . '/' . $this->session->userdata('nivel_acesso'));
 		}
 	}
@@ -272,7 +278,9 @@ class Funcionario extends CI_Controller
 	{
 		$this->Funcionario_Model->add_prof_turma();
 		$id_funcionario = $this->input->post('id_funcionario'); //	Pega o ultimo id do funcionario inserido
-		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>TURMA ADICIONADA COM SUCESSO</div>");
+		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>TURMA ADICIONADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('rh/funcionario/detalhe_professor?id_funcionario=' . $id_funcionario);
 	}
 	/*
@@ -295,7 +303,9 @@ class Funcionario extends CI_Controller
 			}
 		}
 		/*--------------------------------------------------------------------------------------------------------------------*/
-		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FALTA MARCADA CO SUCESSO</div>");
+		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FALTA MARCADA CO SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('home/recursos_humanos');
 	}
 	/*		 					MAPA DE ASSIDUIDADE		 					
@@ -347,7 +357,9 @@ class Funcionario extends CI_Controller
 		$dados["faltas_n_justificadas"] = $this->db->get()->num_rows();
 		/* ------------------------------------------------------------------------------------------------------------- */
 		if (empty($dados["funcionario_inf"])) {
-			echo $this->session->set_flashdata('msg', "<div class='alert alert-warning text-center'>NEHUMA FALTA MARCADA AO FUNCIONARIO SELECIONADO</div>");
+			echo $this->session->set_flashdata('msg', "<div class='alert alert-warning text-center'>NEHUMA FALTA MARCADA AO FUNCIONARIO SELECIONADO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('rh/funcionario/mapa_assiduidade');
 		} else {
 			$this->db->select('*');																							// select tudo
@@ -399,7 +411,9 @@ class Funcionario extends CI_Controller
 	{
 		$this->Funcionario_Model->justificar_falta();
 		/*-------------------------------------------------------------------------------------------------------------------------*/
-		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FALTA JUSTIFICADA COM SUCESSO</div>");
+		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FALTA JUSTIFICADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('rh/funcionario/mapa_assiduidade');
 	}
 	public function mapa_assiduidade_funcionario()
@@ -426,7 +440,9 @@ class Funcionario extends CI_Controller
 		$dados["mes"] = $this->input->post("mes");
 		/*-----------------------------------------------------------------------------------------------------------------------------*/
 		if (empty($dados["assiduidade_funcionarios"])) {
-			echo $this->session->set_flashdata('msg', "<div class='alert alert-warning text-center'>SEM REGISTRO DE FALTAS NO MÊS SELECIONADO</div>");
+			echo $this->session->set_flashdata('msg', "<div class='alert alert-warning text-center'>SEM REGISTRO DE FALTAS NO MÊS SELECIONADO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('rh/funcionario/mapa_assiduidade');
 		} elseif (!empty($dados["assiduidade_funcionarios"])) {
 			/*-----------------------------------------------------------------------------------------------------------------------*/
@@ -674,7 +690,9 @@ class Funcionario extends CI_Controller
 				);
 				$this->db->where('id_funcionario', $id);
 				$this->db->update('funcionario', $funcionario);
-				echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO</div>");
+				echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO
+					<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+					<span aria-hidden='true'>&times;</span></button></div>");
 				redirect('rh/funcionario/detalhe_rh?id_funcionario=' . $id);
 			}
 		}
@@ -717,7 +735,9 @@ class Funcionario extends CI_Controller
 		/* ======================================================================================================= */
 		$this->db->where('id_funcionario', $id);
 		$this->db->update('funcionario', $funcionario);
-		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO</div>");
+		echo $this->session->set_flashdata('msg', "<div class='alert alert-success text-center'>FOTOGRAFIA ALTERADA COM SUCESSO
+			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+			<span aria-hidden='true'>&times;</span></button></div>");
 		redirect('rh/funcionario/detalhe_rh?id_funcionario=' . $id);
 	}
 	/*			 			DECLARACAO DE EFECTIVIDADE

@@ -57,7 +57,9 @@ class Sessao extends CI_Controller
 				redirect('home');
 			}
 		}else{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>UTILIZADOR OU PALAVRA PASSE INCORRECTO</div>");
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-danger text-center'>UTILIZADOR OU PALAVRA PASSE INCORRECTO
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('/');
 		}
 	}
