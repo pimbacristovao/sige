@@ -55,7 +55,7 @@
             <div class="navbar-header">
                 <a href="javascript:;" class="navbar-brand text-light">
                     <b class="text-light">Sistema de Gestão Escolar</b>
-                    | <small> Escola do Ensino Primário Nº 1088</small>
+					| <small> Escola do Ensino Primário Nº 1523</small>
                 </a>
                 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                     <span class="icon-bar"></span>
