@@ -243,6 +243,7 @@ class Matricula extends CI_Controller
 	}
 	/*											Detalhes da Matricula
 	===========================================================================================================================*/
+	// ! FIXME: Corrigir essa função para pegar o id da classe em vez de uma string, porque se por algum motivo for alterado o id resultará em erro
 	public function caderneta_aluno($id_matricula, $classe_id, $nive_acesso)
 	{
 		if ($nive_acesso == "1")
@@ -273,7 +274,7 @@ class Matricula extends CI_Controller
 			/*===========================================================================================================================*/
 			$dados["classe"] = $this->Select_Dinamico_Model->busca_classes();
 			/*===========================================================================================================================*/ 
-			if (($classe_id == "41"))
+			if (($classe_id == "1"))
 			{
 				/*================= CADERNETA INICIACAO =================*/ 
 				$this->load->view('layout/cabecalho_secretaria');
@@ -282,7 +283,7 @@ class Matricula extends CI_Controller
 				$this->load->view('layout/modal_matricula');
 				$this->load->view('layout/rodape');
 				$this->load->view('layout/script');
-			} elseif (($classe_id == "46")||($classe_id == "47")) {
+			} elseif (($classe_id == "5")||($classe_id == "6")) {
 				/*================= CADERNETA 4ª E 5ª CLASSE =================*/ 
 				$this->load->view('layout/cabecalho_secretaria');
 				$this->load->view('layout/menu_lateral_secretaria');
@@ -290,7 +291,7 @@ class Matricula extends CI_Controller
 				$this->load->view('layout/modal_matricula');
 				$this->load->view('layout/rodape');
 				$this->load->view('layout/script');
-			} elseif (($classe_id == "48")) {
+			} elseif (($classe_id == "7")) {
 				/*================= CADERNETA 6ª CLASSE =================*/ 
 				$this->load->view('layout/cabecalho_secretaria');
 				$this->load->view('layout/menu_lateral_secretaria');
@@ -335,7 +336,7 @@ class Matricula extends CI_Controller
 			/*===========================================================================================================================*/
 			$dados["classe"] = $this->Select_Dinamico_Model->busca_classes();
 			/*===========================================================================================================================*/ 
-			if (($classe_id == "41"))
+			if (($classe_id == "1"))
 			{
 				/*================= CADERNETA INICIACAO =================*/ 
 				$this->load->view('layout/cabecalho_secretaria');
@@ -344,7 +345,7 @@ class Matricula extends CI_Controller
 				$this->load->view('layout/modal_matricula');
 				$this->load->view('layout/rodape');
 				$this->load->view('layout/script');
-			} elseif (($classe_id == "46")||($classe_id == "47")) {
+			} elseif (($classe_id == "5")||($classe_id == "6")) {
 				/*================= CADERNETA 4ª E 5ª CLASSE =================*/ 
 				$this->load->view('layout/cabecalho_secretaria');
 				$this->load->view('layout/menu_lateral_secretaria');
@@ -352,7 +353,7 @@ class Matricula extends CI_Controller
 				$this->load->view('layout/modal_matricula');
 				$this->load->view('layout/rodape');
 				$this->load->view('layout/script');
-			} elseif (($classe_id == "48")) {
+			} elseif (($classe_id == "7")) {
 				/*================= CADERNETA 6ª CLASSE =================*/ 
 				$this->load->view('layout/cabecalho_secretaria');
 				$this->load->view('layout/menu_lateral_secretaria');
@@ -405,7 +406,7 @@ class Matricula extends CI_Controller
 		// ===========================================================================================================================
 		$dados["matricula_select"] = $this->Matricula_Model->retorna_matricula($id_matricula);
 		// ===========================================================================================================================
-		if ($classe == 41) {
+		if ($classe == 1) {
 			$this->load->library("My_dompdf");
 			$this->my_dompdf->gerar_pdf('reports/caderneta_aluno_iniciacao_pdf', $dados, TRUE);
 		} else {
@@ -448,7 +449,7 @@ class Matricula extends CI_Controller
 		// ===========================================================================================================================
 		$dados["matricula_select"] = $this->Matricula_Model->retorna_matricula($id_matricula);
 		// ===========================================================================================================================
-		if ($classe == 41) {
+		if ($classe == 1) {
 			$this->load->library("My_dompdf");
 			$this->my_dompdf->gerar_pdf_landscape('reports/caderneta_aluno_iniciacao_pdf', $dados, TRUE);
 		} else {
@@ -473,7 +474,7 @@ class Matricula extends CI_Controller
 		$this->db->join('provincia',    'provincia.provincia_id = aluno.provincia_id');
 		$this->db->join('municipio',    'municipio.municipio_id = aluno.municipio_id');
 		$this->db->join('funcionario',  'funcionario.id_funcionario = matricula.funcionario_id');
-		$dados["matricula_row"] = $this->db->get()->row();									// Join Matricula
+		$dados["matricula_row"] = $this->db->get()->row();
 		// ===========================================================================================================================
 		$this->db->select('*');																				// Selecione Tudo
 		$this->db->from('notas_disciplina');																// Da tabela Matricula
@@ -556,7 +557,7 @@ class Matricula extends CI_Controller
 		$this->db->join('disciplina', 'disciplina.id_disciplina = notas_disciplina.disciplina_id');		// Join [Disciplina]
 		$dados['notas_disciplina'] = $this->db->get('notas_disciplina')->result();
 		// ============================================================================================================================
-		if ($classe == 41) 
+		if ($classe == 1) 
 		{
 			// SE classe = iniciação - chama a view da iniciação
 			$this->load->view('layout/cabecalho');
