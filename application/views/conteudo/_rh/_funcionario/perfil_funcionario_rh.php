@@ -9,7 +9,7 @@
         <div class="tab-pane " id="profile-about">
             <!-- begin table -->
             <div class="table-responsive">
-                <table class="table table-striped align-middle titulo-tabela"> <!-- text-uppercase -->
+                <table class="table table-striped align-middle text-uppercase"> <!--titulo-tabela  -->
                     <tbody>
                         <tr class="highlight">
                             <td class="text-center align-middle" width="10%" rowspan="5">
@@ -81,13 +81,21 @@
                                         <li><a
                                                 href="<?= site_url('rh/funcionario/editar/'.$funcionario['id_funcionario']); ?>">
                                                 <i class="fa fa-user-edit t-plus-1 fa-fw fa-lg mr-2"></i>ALTERAR
-                                                INFORMAÇÕES</a>
+                                                INFORMAÇÕES
+											</a>
                                         </li>
                                         <li><a
                                                 href="<?=site_url('rh/funcionario/carregar_imagem?id_funcionario='.$funcionario['id_funcionario']) ?>">
                                                 <i class="fa fa-camera t-plus-1 fa-fw fa-lg mr-2"></i>ALTERAR
-                                                FOGRAFIA</a>
+                                                FOGRAFIA
+											</a>
                                         </li>
+										<li><a 
+												href="<?= site_url('rh/funcionario/apagar/'.$funcionario['id_funcionario']) ?>"
+												class="btn btn-outline-danger">
+												<i class="fa fa-trash t-plus-1 fa-fw fa-lg mr-2"></i>EXCLUIR FUNCIONÁRIO
+											</a>
+										</li>
                                         <!-- <li><a href="#modal-utilizador" data-toggle="modal">
                                                 <i class="fa fa-user-plus t-plus-1 fa-fw fa-lg mr-2"></i>CRIAR
                                                 UTILIZADOR</a>
