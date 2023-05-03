@@ -91,10 +91,10 @@
                   </div>
                   <!-- end dropdown -->
                   <!------------------------------------------------------------------------------------------>
-                  <!-- <a href="<?= site_url('secretaria/aluno/apagar/'.$aluno['id_aluno']) ?>"
-                                        class="btn btn-danger m-b-10 p-l-5">
-                                        <i class="fa fa-edit mr-2"></i>EXCLUIR ALUNO
-                                    </a> -->
+                  <a href="<?= site_url('secretaria/aluno/apagar/'.$aluno['id_aluno']) ?>"
+											class="btn btn-sm btn-outline-danger ">
+											<i class="fa fa-trash mr-2"></i>EXCLUIR ALUNO
+									</a>
                 </span>
                 <!---------------------------------------------------------------------------->
               </th>
@@ -170,6 +170,8 @@
                       <!--------------------------------------------------------------------------------------------------->
                       <li><a href="<?= site_url('secretaria/matricula/guia_transferencia/'.$linha->id_matricula) ?>">
                           <i class="fa fa-file-pdf mr-2"></i>Guia de Tranferência</a></li>
+                      <li><a href="<?= site_url('secretaria/matricula/apagar/'. $linha->id_matricula . '/' . $aluno['id_aluno']) ?>" class="text-red">
+                          <i class="fa fa-trash mr-2"></i>Excluir Matricula</a></li>
                     </ul>
                   </div>
                   <!-- end dropdown -->
