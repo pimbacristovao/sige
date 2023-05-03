@@ -70,41 +70,43 @@
                         </tr>
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th>
-                                <!-- begin dropdown -->
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary"><i class="fa fa-cog mr-2"></i>OPÇÕES</a>
-                                    <a href="#" class="btn btn-outline-primary dropdown-toggle"
-                                        data-toggle="dropdown"></a>
-                                    <ul class="dropdown-menu pull-left">
-                                        <li><a
-                                                href="<?= site_url('rh/funcionario/editar/'.$funcionario['id_funcionario']); ?>">
-                                                <i class="fa fa-user-edit t-plus-1 fa-fw fa-lg mr-2"></i>ALTERAR
-                                                INFORMAÇÕES
-											</a>
-                                        </li>
-                                        <li><a
-                                                href="<?=site_url('rh/funcionario/carregar_imagem?id_funcionario='.$funcionario['id_funcionario']) ?>">
-                                                <i class="fa fa-camera t-plus-1 fa-fw fa-lg mr-2"></i>ALTERAR
-                                                FOGRAFIA
-											</a>
-                                        </li>
-										<li><a 
-												href="<?= site_url('rh/funcionario/apagar/'.$funcionario['id_funcionario']) ?>"
-												class="btn btn-outline-danger">
-												<i class="fa fa-trash t-plus-1 fa-fw fa-lg mr-2"></i>EXCLUIR FUNCIONÁRIO
+					<tr>
+						<th colspan="5">
+							<span class="pull-left">
+								<!-- begin dropdown -->
+								<div class="btn-group">
+									<a href="#" class="btn btn-sm btn-dark"><i class="fa fa-edit mr-2"></i>
+									ALTERAR INFORMAÇÕES</a>
+									<a href="#" class="btn btn-sm btn-outline-dark dropdown-toggle" data-toggle="dropdown"></a>
+									<ul class="dropdown-menu pull-none">
+										<!------------------------------------------------------------------------------------------>
+										<li>
+											<a href="<?= site_url('rh/funcionario/editar/' . $funcionario['id_funcionario']); ?>">
+											<i class="fa fa-edit mr-2"></i>EDITAR FUNCIONÁRIO
 											</a>
 										</li>
-                                        <!-- <li><a href="#modal-utilizador" data-toggle="modal">
-                                                <i class="fa fa-user-plus t-plus-1 fa-fw fa-lg mr-2"></i>CRIAR
-                                                UTILIZADOR</a>
-                                        </li> -->
-                                    </ul>
-                                </div><!-- end dropdown -->
-
-                            </th>
-                        </tr>
+										<!------------------------------------------------------------------------------------------>
+										<li>
+											<a href="<?= site_url('rh/funcionario/carregar_imagem?id_funcionario=' . $funcionario['id_funcionario']) ?>">
+											<i class="fa fa-camera mr-2"></i>ALTERAR FOTOGRAFIA</a>
+										</li>
+										<!------------------------------------------------------------------------------------------>
+										<!-- <li><a href="#modal-utilizador" data-toggle="modal">
+												<i class="fa fa-user-plus t-plus-1 fa-fw fa-lg mr-2"></i>CRIAR UTILIZADOR
+											</a>
+										</li> -->
+									</ul>
+								</div>
+								<!-- end dropdown -->
+								<!------------------------------------------------------------------------------------------>
+								<a href="<?= site_url('rh/funcionario/apagar/' . $funcionario['id_funcionario']) ?>"
+										class="btn btn-sm btn-outline-danger ml-2">
+											<i class="fa fa-trash mr-2"></i>EXCLUIR FUNCIONÁRIO
+									</a>
+							</span>
+							<!---------------------------------------------------------------------------->
+							</th>
+						</tr>
                     </tfoot>
                 </table>
             </div><!-- end table -->
