@@ -7,7 +7,6 @@
     <title>Faltas - <?= $mes; ?></title>
     <style>
     body {
-        /* font-family: "Arial" */
         font-family: Arial, Helvetica, Sans-serif;
     }
 
@@ -176,9 +175,11 @@
             Luanda, aos <?= strftime('%d de %B de %Y', strtotime(date('d-m-Y')));?>.
             <strong>
                 <br><br>
-                A Directora da Escola
-                <br><br>
+                O Director da Escola
+                <br><br><br>
                 ___________________________________
+				<br>
+				José Adão Domingos
             </strong>
         </p>
     </div>
