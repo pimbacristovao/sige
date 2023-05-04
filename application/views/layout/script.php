@@ -589,9 +589,9 @@ $(document).ready(function() {
         minlength: 3,
         minWords: 2
       },
-      contacto_aluno: {
-        required: true
-      }
+      // contacto_aluno: {
+      //   required: true
+      // }
     }
   });
 });
