@@ -164,7 +164,7 @@ class Aluno extends CI_Controller
 		$this->load->view('layout/rodape');
 		$this->load->view('layout/script');
 	}
-	public function actualizar($id)
+	public function actualizar()
 	{
 		$this->Aluno_Model->alterar($id);
 		$id_aluno = $this->input->post('id_aluno'); //	Pega o ultimo id do aluno inserido
