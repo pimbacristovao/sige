@@ -8,15 +8,16 @@ class Pauta_xls_05 extends CI_Controller
 {
 	public function export_xls_05($anolectivo, $turma) {
 		$this->db->select('*');													  					// select tudo
-		$this->db->from('notas_disciplina');												 		// da tbl matricula
-		$this->db->where("anolectivo_id", $anolectivo);												// onde
-        $this->db->where("turma_id", $turma);									 					// onde
-		$this->db->join('aluno', 		'aluno.id_aluno = notas_disciplina.aluno_id');						// join ano lectivo e matricula
-		$this->db->join('anolectivo', 	'anolectivo.id_ano = notas_disciplina.anolectivo_id');		// join ano lectivo e matricula
-		$this->db->join('turma', 		'turma.id_turma = notas_disciplina.turma_id');						// join turma e matricula
-		$this->db->join('classe', 		'classe.id_classe = turma.classe_id');							// Join tbl classe [turma]
-		$this->db->join('periodo', 		'periodo.id_periodo = turma.periodo_id');						// join periodo e turma
-		$this->db->join('sala', 		'sala.id_sala = turma.sala_id');						// join periodo e turma
+		$this->db->from('notas_disciplina');												 		// da tbl notas_disciplina
+		$this->db->where("anolectivo_id", $anolectivo);												// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+        $this->db->where("turma_id", $turma);									 					// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+		$this->db->join('aluno', 		'aluno.id_aluno = notas_disciplina.aluno_id');				// join tbl aluno e notas_disciplina
+		$this->db->join('anolectivo', 	'anolectivo.id_ano = notas_disciplina.anolectivo_id');		// join tbl anolectivo e notas_disciplina
+		$this->db->join('turma', 		'turma.id_turma = notas_disciplina.turma_id');				// join tbl turma e notas_disciplina
+		$this->db->join('classe', 		'classe.id_classe = turma.classe_id');						// Join tbl classe e turma
+		$this->db->join('periodo', 		'periodo.id_periodo = turma.periodo_id');					// join tbl periodo e turma
+		$this->db->join('turma_sala', 	'turma_sala.id_turma = turma.id_turma');					// join tbl turma_sala e turma
+		$this->db->join('sala', 		'sala.id_sala = turma_sala.id_sala');						// join tbl sala e turma_sala
 		$dados["dados_turma"] = $this->db->get()->row();										    // retorna 1 linha
 		/* ------------------------------------------------------------------------------------------------------------- */
 		$this->db->from('notas_disciplina');														// de notas disciplina
