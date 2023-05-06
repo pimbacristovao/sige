@@ -263,13 +263,13 @@ class Matricula extends CI_Controller
 			$this->db->select('*');																				// Selecione Tudo
 			$this->db->from('notas_disciplina');																// Da tabela Matricula
 			$this->db->where('matricula_id', $id_matricula);													// Aonde o Id_Aluno = $id (get id aluno)
-			$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');		// Join [Classe = Matricula]
+			$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');		// Join tbl disciplina e notas_disciplina
 			$dados["notas_disciplina"] = $this->db->get()->result();											// Join Matricula
 			/*===========================================================================================================================*/ 
 			$this->db->select('*');																		// Selecione Tudo
 			$this->db->from('disciplina');																// Da tabela Matricula
 			$this->db->where('classe_id', $classe_id);
-			$this->db->join('classe',	'classe.id_classe = disciplina.classe_id');						// Join [Classe = Matricula]
+			$this->db->join('classe',	'classe.id_classe = disciplina.classe_id');						// Join tbl disciplina e notas_disciplina
 			$dados["disciplinas"] = $this->db->get()->result();											// Join Matricula
 			/*===========================================================================================================================*/
 			$dados["classe"] = $this->Select_Dinamico_Model->busca_classes();
@@ -325,13 +325,13 @@ class Matricula extends CI_Controller
 			$this->db->select('*');																				// Selecione Tudo
 			$this->db->from('notas_disciplina');																// Da tabela Matricula
 			$this->db->where('matricula_id', $id_matricula);													// Aonde o Id_Aluno = $id (get id aluno)
-			$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');		// Join [Classe = Matricula]
+			$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');		// Join tbl disciplina e notas_disciplina
 			$dados["notas_disciplina"] = $this->db->get()->result();											// Join Matricula
 			/*===========================================================================================================================*/ 
 			$this->db->select('*');																		// Selecione Tudo
-			$this->db->from('disciplina');																// Da tabela Matricula
+			$this->db->from('disciplina');																// Da tabela disciplina
 			$this->db->where('classe_id', $classe_id);
-			$this->db->join('classe',	'classe.id_classe = disciplina.classe_id');						// Join [Classe = Matricula]
+			$this->db->join('classe',	'classe.id_classe = disciplina.classe_id');						// Join tbl disciplina e notas_disciplina
 			$dados["disciplinas"] = $this->db->get()->result();											// Join Matricula
 			/*===========================================================================================================================*/
 			$dados["classe"] = $this->Select_Dinamico_Model->busca_classes();
@@ -386,7 +386,7 @@ class Matricula extends CI_Controller
 		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');
 		$this->db->join('sala',  	  'sala.id_sala = turma_sala.id_sala');
 		$this->db->join('periodo', 	  'periodo.id_periodo = turma.periodo_id');
-		$dados["matricula_row"] = $this->db->get()->row();											// Resulta uma linha
+		$dados["matricula_row"] = $this->db->get()->row();	// Retorna uma linha
 		/*								SELECT PROFESSOR DA TURMA 
 		===========================================================================================================*/
 		$this->db->select('*');
@@ -396,12 +396,12 @@ class Matricula extends CI_Controller
 		$this->db->join('anolectivo', 'anolectivo.id_ano = matricula.anolectivo_id');
 		$this->db->join('turma',  	  'turma.id_turma = matricula.turma_id');
 		$this->db->join('classe', 	  'classe.id_classe = turma.classe_id');
-		$dados["matricula_select"] = $this->db->get()->row();													// Resulta uma linha
+		$dados["matricula_select"] = $this->db->get()->row();			// Retorna uma linha
 		// ===========================================================================================================================
 		$this->db->select('*');																				// Selecione Tudo
-		$this->db->from('notas_disciplina');																// Da tabela Matricula
-		$this->db->where('matricula_id', $id_matricula);													// Aonde o Id_Aluno = $id (get id aluno)
-		$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');	// Join [Classe = Matricula]
+		$this->db->from('notas_disciplina');																// Da tabela notas_disciplina
+		$this->db->where('matricula_id', $id_matricula);													// onde o valor da coluna "matricula_id" é igual ao valor passado como parâmetro $id_matricula
+		$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');	// Join tbl disciplina e notas_disciplina
 		$dados["matricula"] = $this->db->get()->result();												// Resulta varias linhas da tabela
 		// ===========================================================================================================================
 		$dados["matricula_select"] = $this->Matricula_Model->retorna_matricula($id_matricula);
@@ -421,15 +421,15 @@ class Matricula extends CI_Controller
 		$this->db->select('*');
 		$this->db->from('matricula');
 		$this->db->where('id_matricula', $id_matricula);
-		$this->db->join('aluno',  	   'aluno.id_aluno = matricula.aluno_id');
-		$this->db->join('anolectivo',  'anolectivo.id_ano = matricula.anolectivo_id');
-		$this->db->join('turma',  	   'turma.id_turma = matricula.turma_id');
-		$this->db->join('classe', 	   'classe.id_classe = turma.classe_id');
-		$this->db->join('pais',  	   'pais.pais_id = aluno.pais_id');
-		$this->db->join('provincia',   'provincia.provincia_id = aluno.provincia_id');
-		$this->db->join('municipio',   'municipio.municipio_id = aluno.municipio_id');
-		$this->db->join('funcionario', 'funcionario.id_funcionario = matricula.funcionario_id');
-		$dados["matricula_row"] = $this->db->get()->row();											// Resulta uma linha
+		$this->db->join('aluno',  	   'aluno.id_aluno = matricula.aluno_id', 'left');
+		$this->db->join('anolectivo',  'anolectivo.id_ano = matricula.anolectivo_id', 'left');
+		$this->db->join('turma',  	   'turma.id_turma = matricula.turma_id', 'left');
+		$this->db->join('classe', 	   'classe.id_classe = turma.classe_id', 'left');
+		$this->db->join('pais',  	   'pais.pais_id = aluno.pais_id', 'left');
+		$this->db->join('provincia',   'provincia.provincia_id = aluno.provincia_id', 'left');
+		$this->db->join('municipio',   'municipio.municipio_id = aluno.municipio_id', 'left');
+		$this->db->join('funcionario', 'funcionario.id_funcionario = matricula.funcionario_id', 'left');
+		$dados["matricula_row"] = $this->db->get()->row();	// Retorna uma linha
 		/*---------------------------------------------------------------------------*/
 		$this->db->select('*');
 		$this->db->from('matricula');
@@ -439,13 +439,13 @@ class Matricula extends CI_Controller
 		$this->db->join('turma',  	  'turma.id_turma = matricula.turma_id');
 		$this->db->join('classe', 	  'classe.id_classe = turma.classe_id');
 		$this->db->join('curso',  	  'curso.id_curso = matricula.curso_id');
-		$dados["matricula_select"] = $this->db->get()->row();													// Resulta uma linha
+		$dados["matricula_select"] = $this->db->get()->row();	// Retorna uma linha
 		// ===========================================================================================================================
 		$this->db->select('*'); // Selecione Tudo
-		$this->db->from('notas_disciplina'); // Da tabela Matricula
-		$this->db->where('matricula_id', $id_matricula); // Aonde o Id_Aluno = $id (get id aluno)
-		$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');	// Join [Classe = Matricula]
-		$dados["matricula"] = $this->db->get()->result();	// Resulta varias linhas da tabela
+		$this->db->from('notas_disciplina'); // Da tabela notas_disciplina
+		$this->db->where('matricula_id', $id_matricula); // onde o valor da coluna "matricula_id" é igual ao valor passado como parâmetro $id_matricula
+		$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');	// Join tbl disciplina e notas_disciplina
+		$dados["matricula"] = $this->db->get()->result();	// Retorna várias linhas da tabela
 		// ===========================================================================================================================
 		$dados["matricula_select"] = $this->Matricula_Model->retorna_matricula($id_matricula);
 		// ===========================================================================================================================
@@ -479,7 +479,7 @@ class Matricula extends CI_Controller
 		$this->db->select('*');																				// Selecione Tudo
 		$this->db->from('notas_disciplina');																// Da tabela Matricula
 		$this->db->where('matricula_id', $id_matricula);													// Aonde o Id_Aluno = $id (get id aluno)
-		$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');	// Join [Classe = Matricula]
+		$this->db->join('disciplina',	'disciplina.id_disciplina = notas_disciplina.disciplina_id');	// Join tbl disciplina e notas_disciplina
 		// $dados["notas_disciplina"] = $this->db->get()->result();									// Join Matricula
 		$dados["matricula"] = $this->db->get()->result();												// Resulta varias linhas da tabela
 		// ===========================================================================================================================
@@ -506,7 +506,7 @@ class Matricula extends CI_Controller
 		$id_classe 		  = $this->input->post('classe');     	//	pega o id da classe
 		$anolectivo_id  = $this->input->post('anolectivo');		//  pega o id do anolectivo
 		$turma_id  	  	= $this->input->post('turma');			  //  pega o id da turma
-		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>DISCIPLINAS ADICIONADA COM SUCESSO
+		echo $this->session->set_flashdata('msg',"<div class='alert alert-success text-center'>DISCIPLINAS ADICIONADAS COM SUCESSO
 			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 			<span aria-hidden='true'>&times;</span></button></div>");	
 		redirect('secretaria/matricula/caderneta_aluno/'.$id_matricula.'/'.$id_classe.'/'.$this->session->userdata('nivel_acesso'));
@@ -534,7 +534,7 @@ class Matricula extends CI_Controller
 		// $this->db->order_by("anolectivo", "asc");									// Orden
 		$this->db->join('aluno',	   'aluno.id_aluno = matricula.aluno_id');			// Join [Turma = Matricula]
 		$this->db->join('anolectivo',  'anolectivo.id_ano = matricula.anolectivo_id'); 	// Join [Ano lectivo = Matricula]
-		$this->db->join('classe',	   'classe.id_classe  = matricula.classe_id');		// Join [Classe = Matricula]
+		$this->db->join('classe',	   'classe.id_classe  = matricula.classe_id');		// Join tbl disciplina e notas_disciplina
 		$this->db->join('disciplina',  'disciplina.classe_id = classe.id_classe');		// Join [Disciplina = Classe]
 		$dados["matricula"] = $this->db->get()->result();								// Join Matricula	   
 		$dados["matricula_select"] = $this->Matricula_Model->retorna_matricula($id_matricula);				   		
