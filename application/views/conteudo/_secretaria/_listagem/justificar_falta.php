@@ -36,8 +36,8 @@
         <form action="<?= site_url('secretaria/matricula/justificar_falta')?>" method="POST">
             <div class="form-group">
                 <!--  CAMPOS OCULTOS  -->
-                <input type="hidden" class="form-control" name="id_assiduidade"
-                    value="<?= $listagem_alunos->id_assiduidade; ?>" />
+                <input type="hidden" class="form-control" name="id_aula"
+                    value="<?= $listagem_alunos->id_aula; ?>" />
                 <input type="hidden" class="form-control" name="aluno" value="<?= $listagem_alunos->aluno_id; ?>" />
                 <input type="hidden" class="form-control" name="anolectivo"
                     value="<?= $listagem_alunos->anolectivo_id; ?>" />

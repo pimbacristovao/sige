@@ -246,8 +246,8 @@ $(document).ready(function() {
     rules: {
       nome_user: {
         required: true,
-        minlength: 2,
-        minWords: 2
+        minlength: 3,
+        // minWords: 2
       },
       password: {
         required: true,
@@ -260,6 +260,17 @@ $(document).ready(function() {
     }
   });
 });
+function verificar_nome_utilizador() {
+jQuery.ajax({
+	url: "<?php echo base_url(); ?>verificar_nome_utilizador/verificar_utilizador",
+	data: 'nome_user=' + $("#nome_user").val(),
+	type: "POST",
+	success: function(data) {
+		$("#check-username").html(data);
+	},
+	error: function() {}
+});
+}
 /* ============== VALIIDAÇÃO DE FORMULARIO ALTERAR PASSWORD ============== */
 $(document).ready(function() {
   $('#form_password').validate({
@@ -578,9 +589,9 @@ $(document).ready(function() {
         minlength: 3,
         minWords: 2
       },
-      contacto_aluno: {
-        required: true
-      }
+      // contacto_aluno: {
+      //   required: true
+      // }
     }
   });
 });

@@ -18,13 +18,13 @@ class Mapa_faltas_funcionarios extends CI_Controller
 		$this->db->join('funcionario', 'funcionario.id_funcionario = assiduidade_funcionario.funcionario_id');		
 		$dados["assiduidade_funcionarios"] = $this->db->get()->result();
 		/*-----------------------------------------------------------------------------------------------------------------------------*/ 
-		$this->db->select_sum('falta');																// de notas disciplina
-		$this->db->select_sum('justificacao');														// de notas disciplina
-		$this->db->from('assiduidade_funcionario');													// de notas disciplina
-		$this->db->where('mes_ano', $mes);															// filtro - anolectivo
+		$this->db->select_sum('falta');																
+		$this->db->select_sum('justificacao');														
+		$this->db->from('assiduidade_funcionario');													// da tbl assiduidade_funcionário
+		$this->db->where('mes_ano', $mes);															// selecione tudo onde o valor da coluna "mes_ano" é igual ao valor da variável $mes
 		$this->db->group_by('assiduidade_funcionario.funcionario_id');											
-		$this->db->order_by("nivel_acesso", "asc");  	
-		$this->db->join('funcionario', 'funcionario.id_funcionario = assiduidade_funcionario.funcionario_id');		
+		$this->db->order_by("nivel_acesso", "asc");  												// ordena através do nível de acesso
+		$this->db->join('funcionario', 'funcionario.id_funcionario = assiduidade_funcionario.funcionario_id');	// Join tbl funcionário e assiduidade_funcionario	
 		$dados['num_faltas'] = $this->db->get()->result();											// retorna várias linhas
 		/*-----------------------------------------------------------------------------------------------------------------------------*/ 
 		$dados["mes"] = $mes;
@@ -91,7 +91,7 @@ class Mapa_faltas_funcionarios extends CI_Controller
 		$sheet->setCellValue('A1', 'REPÚBLICA DE ANGOLA');
 		$sheet->setCellValue('A2', 'MISNISTERIO DA EDUCAÇÃO');
 		$sheet->setCellValue('A3', 'REPARTIÇÃO DE EDUCAÇÃO DO DISTRITO URBANO DO RANGEL');
-		$sheet->setCellValue('A4', 'ESCOLA DO ENSINO PRIMÁRIO N.º 1188 EX. 5028');
+		$sheet->setCellValue('A4', 'ESCOLA DO ENSINO PRIMÁRIO N.º 1523');
 		$sheet->setCellValue('A6', 'Levantamento de faltas referentes ao mês de'.strftime(' %B de %Y', strtotime($mes)));
 		/*-------------------------------------------------------------------------*/
 		$sheet->setCellValue('A8', 'Nº');

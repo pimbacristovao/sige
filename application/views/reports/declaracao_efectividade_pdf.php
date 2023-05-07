@@ -103,7 +103,7 @@
     ----------------------------------------------------------- -->
     <div>
         <p class="paragrafo">
-            <b>Filomena da Silva Ramos</b> Directora da Escola do Ensino Primário n.º 1188 (Ex. 5028). Declara que o (a)
+            <b>José Adão Domingos</b> Director da Escola do Ensino Primário n.º 1523 (Ex. 1188). Declara que o (a)
             Senhor (a) <b><?= $funcionario_row->nome_funcionario; ?></b> é funcionario (a) desta escola
             exercendo a função de
             <b><?php 
@@ -150,11 +150,11 @@
         <p class="assinatura">
             <strong>
                 <br>
-                A Directora da Escola
+                O Director da Escola
                 <br><br>
                 _______________________________
                 <br>
-                Filomena da Silva Ramos
+                José Adão Domingos
             </strong>
         </p>
     </div>

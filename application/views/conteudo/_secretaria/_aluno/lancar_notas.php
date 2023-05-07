@@ -53,7 +53,7 @@
                                 <legend class="text-secondary">
                                     <h4>1º TRIMESTRE</h4>
                                 </legend>
-                                <!---------------- campo oculto ------------------>
+                                <!---------------- campos ocultos ------------------>
                                 <input type="hidden" name="id_notas_disciplina"
                                     value="<?= $notas_disciplina[0]->id_notas_disciplina; ?>" />
                                 <input type="hidden" name="anolectivo_id"
@@ -62,7 +62,7 @@
                                 <input type="hidden" name="disciplina_id"
                                     value="<?= $notas_disciplina[0]->disciplina_id; ?>" />
                                 <input type="hidden" name="classe_id" value="<?= $notas_disciplina[0]->id_classe; ?>" />
-                                <!---------------- campo oculto ------------------>
+                                <!---------------- fim campos ocultos ------------------>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="form-group row">
@@ -72,7 +72,9 @@
                                                 <input type="number" name="mac_1" id="mac_1"
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->mac_1;?>" placeholder="00.0"
-                                                    autocomplete="off">
+                                                    autocomplete="off"
+													min="1"
+													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
                                             <label for="cpp_1" class="col-md-1 control-label text-right">CPP</label>
@@ -80,7 +82,9 @@
                                                 <input type="number" name="cpp_1" id="cpp_1"
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->cpp_1; ?>" placeholder="00.0"
-                                                    autocomplete="off">
+                                                    autocomplete="off"
+													min="1"
+													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
                                             <div class="col-md-2 ml-5">
@@ -106,7 +110,7 @@
                                 <legend class="text-secondary">
                                     <h4>2º TRIMESTRE</h4>
                                 </legend>
-                                <!---------------- campo oculto ------------------>
+                                <!---------------- campos ocultos ------------------>
                                 <input type="hidden" name="id_notas_disciplina"
                                     value="<?= $notas_disciplina[0]->id_notas_disciplina; ?>" />
                                 <input type="hidden" name="anolectivo_id"
@@ -115,7 +119,7 @@
                                 <input type="hidden" name="disciplina_id"
                                     value="<?= $notas_disciplina[0]->disciplina_id; ?>" />
                                 <input type="hidden" name="classe_id" value="<?= $notas_disciplina[0]->id_classe; ?>" />
-                                <!---------------- campo oculto ---------------- -->
+                                <!---------------- fim campos ocultos ---------------- -->
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="form-group row">
@@ -125,7 +129,9 @@
                                                 <input type="number" name="mac_2" id="mac_2"
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->mac_2;?>" placeholder="00.0"
-                                                    autocomplete="off">
+                                                    autocomplete="off"
+													min="1"
+													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
                                             <label for="cpp_2" class="col-md-1 control-label text-right">CPP</label>
@@ -133,7 +139,9 @@
                                                 <input type="number" name="cpp_2" id="cpp_2"
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->cpp_2; ?>" placeholder="00.0"
-                                                    autocomplete="off">
+                                                    autocomplete="off"
+													min="1"
+													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
                                             <div class="col-md-2 ml-5">
@@ -159,7 +167,7 @@
                                 <legend class="text-secondary">
                                     <h4>3º TRIMESTRE</h4>
                                 </legend>
-                                <!---------------- campo oculto ------------------>
+                                <!---------------- campos ocultos ------------------>
                                 <input type="hidden" name="id_notas_disciplina"
                                     value="<?= $notas_disciplina[0]->id_notas_disciplina; ?>" />
                                 <input type="hidden" name="anolectivo_id"
@@ -168,7 +176,7 @@
                                 <input type="hidden" name="disciplina_id"
                                     value="<?= $notas_disciplina[0]->disciplina_id; ?>" />
                                 <input type="hidden" name="classe_id" value="<?= $notas_disciplina[0]->id_classe; ?>" />
-                                <!---------------- campo oculto ------------------>
+                                <!---------------- fim campos ocultos ------------------>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         <div class="form-group row">
@@ -178,7 +186,9 @@
                                                 <input type="number" name="mac_3" id="mac_3"
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->mac_3;?>" placeholder="00.0"
-                                                    autocomplete="off">
+                                                    autocomplete="off"
+													min="1"
+													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
                                             <label for="cpp_3" class="col-md-1 control-label text-right">CPP</label>
@@ -186,7 +196,9 @@
                                                 <input type="number" name="cpp_3" id="cpp_3"
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->cpp_3; ?>" placeholder="00.0"
-                                                    autocomplete="off">
+                                                    autocomplete="off"
+													min="1"
+													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
                                             <label for="ce" class="col-md-1 control-label text-right">CE</label>
@@ -194,7 +206,9 @@
                                                 <input type="number" name="ce" id="ce"
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->ce; ?>" placeholder="00.0"
-                                                    autocomplete="off">
+                                                    autocomplete="off"
+													min="1"
+													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
                                             <div class="col-md-2 ml-5">

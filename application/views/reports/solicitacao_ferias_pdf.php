@@ -110,8 +110,8 @@
     </div>
     <div class="text-right">
         <strong>
-            <span class="align-left"> À</span><br>
-            <span class="align-left"> EXMA SENHORA DIRECTORA</span>
+            <span class="align-left"> O</span><br>
+            <span class="align-left"> EXMO SENHOR DIRECTOR</span>
         </strong>
     </div><br><br><br>
     <!--        Paragrafo 1 

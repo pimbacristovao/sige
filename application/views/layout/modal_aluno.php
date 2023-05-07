@@ -94,7 +94,7 @@
         <div class="modal-content">
             <form action="<?php echo site_url('secretaria/encarregados/guardar')?>" method="POST" id="form_encarregado">
                 <div class="modal-header">
-                    <h4 class="modal-title">Enarrgados de Educação</h4>
+                    <h4 class="modal-title">Adicionar encarregado de educação</h4>
                     <button type="button" class="close" data-dismiss="modal" ariatext="true">&times;</button>
                 </div>
                 <div class="modal-body">

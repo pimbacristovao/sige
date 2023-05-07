@@ -1,0 +1,11 @@
+/* folha de estilo para o link de recuperação de palavra-passe */
+
+a#recovery_pass {
+	font-size: 14px !important;
+	text-decoration: none !important;
+}
+
+a#recovery_pass:hover {
+	text-decoration: underline !important;
+}
+

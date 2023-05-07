@@ -14,6 +14,13 @@ Class Select_Dinamico_Model extends CI_model
         $query = $this->db->get('funcionario');
         return $query->result();
     }
+	// ================== SELECT DEPARTAMENTOS ==================
+	public function busca_departamentos()
+	{
+		$this->db->order_by('departamento', 'ASC');
+		$query = $this->db->get('departamento');
+		return $query->result();
+	}
     // ================== SELECT PAISES ==================
     public function busca_pais()
     {
@@ -93,4 +100,8 @@ Class Select_Dinamico_Model extends CI_model
         $this->db->select('*');
         return $this->db->get('turma')->result();
     }
+	function get_departamento(){
+		$this->db->select('*');
+		return $this->db->get('departamento')->result();
+	}
 }

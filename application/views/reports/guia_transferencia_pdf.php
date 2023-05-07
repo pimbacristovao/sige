@@ -118,11 +118,11 @@
         <p class="assinatura">
             <strong>
                 <br>
-                A Directora da Escola
+                O Director da Escola
                 <br><br><br>
                 ___________________________________
                 <br>
-                Filomena da Silva Ramos
+                José Adão Domingos
             </strong>
         </p>
     </div>

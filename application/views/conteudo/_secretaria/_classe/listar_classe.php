@@ -1,6 +1,6 @@
 <!-- INICIO CONTEUDO -->
 <div id="content" class="content">
-    <h4 class="page-header"><i class="fa fa-list mr-5"></i>TURMAS</h4>
+    <h4 class="page-header"><i class="fa fa-list mr-5"></i>LISTAR CLASSES</h4>
     <?= $this->session->flashdata('msg'); ?>
     <div class="mt-5">
         <div class="invoice-content">

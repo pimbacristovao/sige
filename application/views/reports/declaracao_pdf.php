@@ -86,7 +86,7 @@
     ----------------------------------------------------------- -->
     <div>
         <p class="paragrafo">
-            a) <b>Filomena da Silva Ramos</b> Directora da Escola do Ensino Primário n.º 1188 (Ex. 5028) declara que
+            a) <b>José Adão Domingos</b> Director da Escola do Ensino Primário n.º 1523 declara que
             <b><?= $matricula_row->nome; ?></b> filho(a) de <?= $matricula_row->nome_pai; ?>
             e de <?= $matricula_row->nome_mae; ?> nascido(a) aos
             <?= strftime('%d de %B de %Y', strtotime($matricula_row->nascimento_aluno)); ?>,
@@ -154,7 +154,7 @@
         <!--        Paragrafo 4 
         ----------------------------------------------------------- -->
         <p class="paragrafo">
-            Escola do Ensino Primário Nº 1188, (Ex. 5028), em Luanda, aos
+            Escola do Ensino Primário Nº 1523 (Ex. 1188), em Luanda, aos
             <?= strftime('%d de %B de %Y', strtotime(date('d-m-Y')));?>.
         </p>
         <!--        Assinatura 
@@ -162,11 +162,11 @@
         <p class="assinatura">
             <strong>
                 <br>
-                A Directora
+                O Director
                 <br><br>
                 _______________________________
                 <br>
-                Filomena da Silva Ramos
+                José Adão Domingos
             </strong>
         </p>
     </div>

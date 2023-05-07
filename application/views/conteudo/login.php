@@ -37,6 +37,10 @@
                                 class="form-control form-control-lg bg-transparent text-primary border-primary"
                                 placeholder="Palavra Passe" autocomplete="off" /><?= form_error('password'); ?>
                         </div>
+						<div class="text-center mb-3">
+							<!-- link de recuperacao de palavra-passe -->
+							<a href="<?= site_url('recuperar_password') ?>" id="recovery_pass">Esqueceu sua palavra-passe? Recupere.</a>
+						</div>
                         <strong><?= $this->session->flashdata('msg');?></strong>
                         <div class="login-buttons mb-5">
                             <button type="submit" class="btn btn-outline-primary btn-block btn-lg">Entrar</button>
@@ -45,7 +49,7 @@
                 </form>
                 <hr />
                 <p class="text-center text-grey-darker">
-                    &copy; Copyright 2020 Ermano Cristovão - Todos os direitos revardos
+                    &copy; Copyright <?= date('Y') ?> - Todos os direitos revardos
                 </p>
                 </form>
             </div><!-- end login-content -->

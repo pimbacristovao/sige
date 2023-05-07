@@ -8,6 +8,31 @@ class Matricula_Model extends CI_Model
     {
         return $this->db->get("matricula")->result_array();
     }
+	// VERIFICA SE JÁ FOI FEITA A MATRICULA
+	public function verificar_matricula()
+	{
+		// verifica se já foi realizada a matricula
+		$aluno_id = $this->input->post("aluno_id");
+		$anolectivo_id = $this->input->post("anolectivo");
+		$turma_id = $this->input->post("turma_id");
+		$curso_id = $this->input->post('curso_id');
+
+		// recupera dados da tabela 'encarregados' da base de dados
+		$result = $this->db->from('matricula')										
+							// filtra os resultados combinando o campo 'aluno_id' com o valor fornecido na variável $aluno_id
+							->where("aluno_id", $aluno_id)
+							// filtra os resultados combinando o campo 'anolectivo_id' com o valor fornecido na variável $anolectivo_id
+							->where("anolectivo_id", $anolectivo_id)
+							// filtra os resultados combinando o campo 'turma_id' com o valor fornecido na variável $turma_id
+							->where("turma_id", $turma_id)
+
+							// ->where("curso_id", $curso_id)
+							// executa a consulta e obtém o objeto de resultado
+							->get();
+
+		// verifica se o número de linhas retornadas pela consulta é diferente de zero, então retorna verdadeiro, caso contrário, retorna falso.
+		return $result->num_rows() !== 0 ? true : false; 
+	}
     //  INSERIR REGISTROS NA TABELA MATRICULA
     public function novamatricula()
     {
@@ -78,7 +103,7 @@ class Matricula_Model extends CI_Model
                 'anolectivo_id'  => $this->input->post('anolectivo'),
                 'turma_id'  	 => $this->input->post('turma')
             );
-            $this->db->insert("assiduidade_alunos", $falta_alunos);
+            $this->db->insert("aula", $falta_alunos);
         }
     }
     /*
@@ -86,12 +111,12 @@ class Matricula_Model extends CI_Model
     */
     public function justificar_falta()
     {
-        $id_assiduidade = $this->input->post('id_assiduidade');
+        $id_aula = $this->input->post('id_assiduidade');
         $justicar_falta = array(
 			"justificacao" => $this->input->post('justificacao')
 		);
-        $this->db->where('id_assiduidade', $id_assiduidade);
-        return $this->db->update('assiduidade_alunos', $justicar_falta);
+        $this->db->where('id_aula', $id_aula);
+        return $this->db->update('aula', $justicar_falta);
     }
     /*=============== salvar notas 1º trimestre===============*/
     public function salvar_nota_1()

@@ -103,20 +103,24 @@ class Sala extends CI_Controller
 	public function ver_turmas($id_sala)
 	{
 		$this->db->select('*');															// select tudo
-		$this->db->from('sala');														// da tbl matricula
-		$this->db->where("id_sala", $id_sala);											// onde
-		$dados["sala"] = $this->db->get()->row();
+		$this->db->from('sala');														// da tbl sala
+		$this->db->where("id_sala", $id_sala);											// onde id da sala é igual ao id da sala passado como argumento
+		$dados["sala"] = $this->db->get()->row();										// retorna uma linha
 		/* ================================================================================================== */
 		$this->db->select('*');															// select tudo
-		$this->db->from('turma');														// da tbl matricula
-		$this->db->where("sala_id", $id_sala);											// onde
+		$this->db->from('turma', 'turma_sala.id_sala');									// da tbl turma e da tbl turma_sala "id_sala"
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');		 		// Join tbl classe e turma 
+		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		 	// Join tbl periodo e turma
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');			// Join tbl turma_sala e tbl turma
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');					// Join tbl sala e turma_sala
+		$this->db->where("turma_sala.id_sala", $id_sala);									// onde id é igual ao id da sala
 		$this->db->order_by("nome_turma", "asc");  										// Ordenar a travez do nome
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');		 		// Join turma e matricula
-		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		 	// Join turma e matricula
 		$dados['turmas'] = $this->db->get()->result();									// retorna várias linhas
 		if ( empty($dados["turmas"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS</div>");
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('secretaria/sala/listar_salas');
 		}
 		elseif  ( !empty($dados["turmas"]) )
@@ -138,15 +142,19 @@ class Sala extends CI_Controller
 		$dados["sala"] = $this->db->get()->row();
 		/* ================================================================================================== */
 		$this->db->select('*');															// select tudo
-		$this->db->from('turma');														// da tbl matricula
-		$this->db->where("sala_id", $id_sala);											// onde
-		$this->db->order_by("nome_turma", "asc");  										// Ordenar a travez do nome
-		$this->db->join('classe', 'classe.id_classe = turma.classe_id');		 		// Join turma e matricula
-		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		 	// Join turma e matricula
+		$this->db->from('turma', 'turma_sala.id_sala');									// da tbl turma e da tbl turma_sala selecione os das id_sala
+		$this->db->join('classe', 'classe.id_classe = turma.classe_id');		 		// Join tbl classe e turma 
+		$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id');		 	// Join tbl periodo e turma
+		$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma');			// Join tbl turma_sala e turma
+		$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala');					// Join tbl sala e turma_sala
+		$this->db->where("turma_sala.id_sala", $id_sala);									// onde id é igual ao id da sala
+		$this->db->order_by("nome_turma", "asc");										// Ordena através do nome
 		$dados['turmas'] = $this->db->get()->result();									// retorna várias linhas
 		if ( empty($dados["turmas"]) )
 		{
-			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS</div>");
+			echo $this->session->set_flashdata('msg',"<div class='alert alert-warning text-center'>A SALA SELECIONADA NÃO TEM TURMAS ASSOCIADAS
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+				<span aria-hidden='true'>&times;</span></button></div>");
 			redirect('secretaria/sala/listar_salas_coordenacao');
 		}
 		elseif  ( !empty($dados["turmas"]) )

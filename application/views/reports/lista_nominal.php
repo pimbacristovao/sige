@@ -6,8 +6,6 @@
     <meta charset="UTF-8">
     <title>Lista Nominal</title>
     <style>
-    body {}
-
     .head {
         font-size: 14px;
         color: #000;

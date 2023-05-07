@@ -5,7 +5,7 @@
     <div class="mt-5">
         <form action="<?php echo site_url('secretaria/encarregados/actualizar')?>" method="POST" id="form_matricula">
             <input type="hidden" name="id_encarregado" value="<?= $encarregado[0]->id_encarregado; ?>" />
-            <input type="hidden" name="aluno_encarregado" value="<?= $encarregado[0]->aluno_id; ?>" />
+            <input type="hidden" name="aluno_encarregado" value="<?= $encarregado[0]->id_aluno; ?>" />
             <fieldset>
                 <div class="row col-8 mx-auto">
                     <!--    NOME DO ENCARREGADO    -->
@@ -71,7 +71,7 @@
                         </strong>
                     </div>
                     <div class="form-group col-12">
-                        <a href="<?= site_url('secretaria/aluno/detalhe?id_aluno='.$encarregado[0]->aluno_id )?>"
+                        <a href="<?= site_url('secretaria/aluno/detalhe?id_aluno='.$encarregado[0]->id_aluno )?>"
                             class="btn btn-danger col-2" data-dismiss="modal"><i class="fa fa-arrow-left mr-2"></i>Voltar</a>
                         <button type="submit" class="btn btn-primary col-2"><i class="fa fa-save mr-2"></i>Guardar</button>
                     </div>

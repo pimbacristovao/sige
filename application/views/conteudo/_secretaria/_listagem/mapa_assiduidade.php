@@ -111,7 +111,7 @@
                             ?>
                     </td>
                     <td class="text-right">
-                        <a href="<?= site_url('secretaria/listagem/justificar_falta/'.$aluno->id_assiduidade)?>"
+                        <a href="<?= site_url('secretaria/listagem/justificar_falta/'.$aluno->id_aula)?>"
                             class="btn btn-secondary btn-sm">Justificar Falta<i class="fa fa-arrow-right ml-2"></i></a>
                     </td>
                 </tr>

@@ -10,35 +10,36 @@ class Mapa_faltas_alunos extends CI_Controller
 	public function exportar_mapa($anolectivo, $turma)
 	{
 		/*-----------------------------------------------------------------------------------------------------------*/
-			$this->db->select('*'); // select tudo
-			$this->db->from('notas_disciplina'); // da tbl matricula
-			$this->db->where("anolectivo_id", $anolectivo); // onde
-			$this->db->where("turma_id", $turma); // onde
-			$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id'); // join ano lectivo e matricula
-			$this->db->join('anolectivo', 'anolectivo.id_ano = notas_disciplina.anolectivo_id'); // join ano lectivo e matricula
-			$this->db->join('turma', 'turma.id_turma = notas_disciplina.turma_id'); // join turma e matricula
-			$this->db->join('classe', 'classe.id_classe = turma.classe_id'); // Join tbl classe [turma]
-			$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id'); // join periodo e turma
-			$this->db->join('sala', 'sala.id_sala = turma.sala_id'); // join periodo e turma
-			$dados["dados_turma"] = $this->db->get()->row(); // retorna 1 linha
+			$this->db->select('*'); 															// select tudo
+			$this->db->from('notas_disciplina'); 												// da tbl matricula
+			$this->db->where("anolectivo_id", $anolectivo); 									// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+			$this->db->where("turma_id", $turma); 												// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+			$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id'); 			 // join tbl aluno e notas_disciplinas
+			$this->db->join('anolectivo', 'anolectivo.id_ano = notas_disciplina.anolectivo_id'); // join tbl anolectivo e notas_disciplinas
+			$this->db->join('turma', 'turma.id_turma = notas_disciplina.turma_id'); 			// join tbl turma e notas_disciplinas
+			$this->db->join('classe', 'classe.id_classe = turma.classe_id'); 					// Join tbl classe e turma
+			$this->db->join('periodo', 'periodo.id_periodo = turma.periodo_id'); 				// join periodo e turma
+			$this->db->join('turma_sala', 'turma_sala.id_turma = turma.id_turma'); 				// join turma_sala e turma
+			$this->db->join('sala', 'sala.id_sala = turma_sala.id_sala'); 						// join sala e turma_sala
+			$dados["dados_turma"] = $this->db->get()->row(); 									// retorna 1 linha
 		/*-------------------------------------------------------------------------*/
-			$this->db->from('assiduidade_alunos');																								// de notas disciplina
-			$this->db->where("anolectivo_id", $anolectivo);																				// filtro - anolectivo
-			$this->db->where("turma_id", $turma);																									// filtro - turma
-			$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id', 'left');			// join turma e matricula
-			$this->db->group_by('assiduidade_alunos.aluno_id');																		// agrupamento
-			$this->db->order_by("nome", "asc");  												 													// Ordenar a travez do nome
-			$dados['alunos'] = $this->db->get()->result();																				// retorna várias linhas
+			$this->db->from('aula');															// da tbl sala
+			$this->db->where("anolectivo_id", $anolectivo);										// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+			$this->db->where("turma_id", $turma);												// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+			$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id', 'left');					// join tbl aluno e aula
+			$this->db->group_by('aula.aluno_id');												// agrupamento
+			$this->db->order_by("nome", "asc");  												// Ordenar atravez do nome
+			$dados['alunos'] = $this->db->get()->result();										// retorna várias linhas
 			/*--------------------------------------------------------------------------------------------------------------------------------*/
-			$this->db->select_sum('falta');																												// de notas disciplina
-			$this->db->select_sum('justificacao');																								// de notas disciplina
-			$this->db->from('assiduidade_alunos');																								// de notas disciplina
-			$this->db->where("anolectivo_id", $anolectivo);																				// filtro - anolectivo
-			$this->db->where("turma_id", $turma);																									// filtro - turma
-			$this->db->join('aluno', 'aluno.id_aluno = assiduidade_alunos.aluno_id', 'left');			// join turma e matricula
-			$this->db->group_by('assiduidade_alunos.aluno_id');																		// agrupamento
-			$this->db->order_by("nome", "asc");  												 													// Ordenar a travez do nome
-			$dados['num_faltas'] = $this->db->get()->result();																		// retorna várias linhas
+			$this->db->select_sum('falta');														// da coluna "falta"
+ 			$this->db->select_sum('justificacao');												// da coluna "justificação"
+			$this->db->from('aula');															// da tbl aula
+			$this->db->where("anolectivo_id", $anolectivo);										// onde o valor da coluna "anolectivo_id" é igual ao valor passado como parâmetro $anolectivo
+			$this->db->where("turma_id", $turma);												// onde o valor da coluna "turma_id" é igual ao valor passado como parâmetro $turma
+			$this->db->join('aluno', 'aluno.id_aluno = aula.aluno_id', 'left');					// join aluno e aula
+			$this->db->group_by('aula.aluno_id');												// agrupamento
+			$this->db->order_by("nome", "asc");  												// Ordenar a travez do nome
+			$dados['num_faltas'] = $this->db->get()->result();									// retorna várias linhas
 		/*-------------------------------------------------------------------------*/
 			$spreadsheet = new Spreadsheet();
 			$sheet = $spreadsheet->getActiveSheet();
@@ -103,7 +104,7 @@ class Mapa_faltas_alunos extends CI_Controller
 		$sheet->setCellValue('A1', 'REPÚBLICA DE ANGOLA');
 		$sheet->setCellValue('A2', 'MISNISTERIO DA EDUCAÇÃO');
 		$sheet->setCellValue('A3', 'REPARTIÇÃO DE EDUCAÇÃO DO DISTRITO URBANO DO RANGEL');
-		$sheet->setCellValue('A4', 'ESCOLA DO ENSINO PRIMÁRIO N.º 1188 (EX. 1188)');
+		$sheet->setCellValue('A4', 'ESCOLA DO ENSINO PRIMÁRIO N.º 1523 (EX. 1188)');
 		$sheet->setCellValue('A6', 'LEVANTAMENTO DE FALTAS');
 		/*-------------------------------------------------------------------------*/
 		$sheet->setCellValue('B7', 'Ano Lectivo: ' .$dados['dados_turma']->ano_let);
@@ -175,12 +176,13 @@ class Mapa_faltas_alunos extends CI_Controller
 		->setDescription("Mapa de Faltas")
 		->setCategory("Relatório de Faltas");
 		/* ----------------------------------------------------------------------------------------------------------- */
-			$writer = new Xlsx($spreadsheet);
-			$filename = "Mapa-de-Faltas-".$anolectivo;
-			//$filename = 'pauta-01';								// variavel com o nome do fixeiro XLS
-			header('Content-Type: application/vnd.ms-excel');
-			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-			header('Cache-Control: max-age=0');
-			$writer->save('php://output');
+		$writer = new Xlsx($spreadsheet);
+		$filename = "Mapa-de-Faltas-".$anolectivo;
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+		header('Cache-Control: max-age=0');
+		ob_end_clean(); // limpa o buffer de saída para permitir que o PHPExcel escreva diretamente no arquivo de saída em vez de armazená-lo em buffer
+		$writer->save('php://output');
 	}
 }
