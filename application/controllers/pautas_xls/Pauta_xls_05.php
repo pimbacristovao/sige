@@ -32,7 +32,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '64');															// filtro - turma
+		$this->db->where("disciplina_id", '31');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -42,7 +42,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '65');															// filtro - turma
+		$this->db->where("disciplina_id", '32');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -52,7 +52,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '66');															// filtro - turma
+		$this->db->where("disciplina_id", '33');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -62,7 +62,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '67');															// filtro - turma
+		$this->db->where("disciplina_id", '34');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -72,7 +72,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '68');															// filtro - turma
+		$this->db->where("disciplina_id", '35');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -82,7 +82,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '69');															// filtro - turma
+		$this->db->where("disciplina_id", '36');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -92,7 +92,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '70');															// filtro - turma
+		$this->db->where("disciplina_id", '37');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -102,7 +102,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '71');															// filtro - turma
+		$this->db->where("disciplina_id", '38');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -112,7 +112,7 @@ class Pauta_xls_05 extends CI_Controller
 		$this->db->from('notas_disciplina');																// de notas disciplina
 		$this->db->where("anolectivo_id", $anolectivo);														// filtro - anolectivo
 		$this->db->where("turma_id", $turma);																// filtro - turma
-		$this->db->where("disciplina_id", '72');															// filtro - turma
+		$this->db->where("disciplina_id", '39');															// filtro - turma
 		$this->db->join('aluno', 'aluno.id_aluno = notas_disciplina.aluno_id', 'left');						// join turma e matricula
 		$this->db->group_by('notas_disciplina.aluno_id');													// agrupamento
 		$this->db->order_by("nome", "asc");  												 				// Ordenar a travez do nome
@@ -491,7 +491,7 @@ class Pauta_xls_05 extends CI_Controller
 		->setCategory("Pauta");
 		/* ----------------------------------------------------------------------------------------------------------- */
 			$writer = new Xlsx($spreadsheet);
-			$filename = "PAUTA-GERA-TURMA-".$dados['dados_turma']->nome_turma.'-'.$dados['dados_turma']->ano_let.'-'.date("d-m-Y-H-i-s");
+			$filename = "PAUTA-GERAL-TURMA-".$dados['dados_turma']->nome_turma.'-'.$dados['dados_turma']->ano_let.'-'.date("d-m-Y-H-i-s");
 			//$filename = 'pauta-01';								// variavel com o nome do fixeiro XLS
 			header('Content-Type: application/vnd.ms-excel');
 			header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
