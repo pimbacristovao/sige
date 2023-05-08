@@ -73,7 +73,7 @@
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->mac_1;?>" placeholder="00.0"
                                                     autocomplete="off"
-													min="1"
+													min="0"
 													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
@@ -83,7 +83,7 @@
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->cpp_1; ?>" placeholder="00.0"
                                                     autocomplete="off"
-													min="1"
+													min="0"
 													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
@@ -130,7 +130,7 @@
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->mac_2;?>" placeholder="00.0"
                                                     autocomplete="off"
-													min="1"
+													min="0"
 													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
@@ -140,7 +140,7 @@
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->cpp_2; ?>" placeholder="00.0"
                                                     autocomplete="off"
-													min="1"
+													min="0"
 													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
@@ -187,7 +187,7 @@
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->mac_3;?>" placeholder="00.0"
                                                     autocomplete="off"
-													min="1"
+													min="0"
 													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
@@ -197,7 +197,7 @@
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->cpp_3; ?>" placeholder="00.0"
                                                     autocomplete="off"
-													min="1"
+													min="0"
 													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
@@ -207,7 +207,7 @@
                                                     class="form-control border-primary"
                                                     value="<?= $notas_disciplina[0]->ce; ?>" placeholder="00.0"
                                                     autocomplete="off"
-													min="1"
+													min="0"
 													max="10">
                                             </div>
                                             <!-- --------------------------------------------------------------- -->
