@@ -116,19 +116,19 @@
         </div>
         <!--------------------------- CAMPO ENDERECO ------------------------------------>
         <div class="row">
-          <div class="form-group col-8">
+          <div class="form-group col-6">
             <label for="endereco_aluno"><b class="text-danger mr-1">*</b>Endereço</label>
             <input type="text" name="endereco_aluno" class="form-control border-primary" id="endereco_aluno"
               value="<?= set_value('endereco_aluno'); ?>" autocomplete="off" />
             <?= form_error('endereco_aluno'); ?>
           </div>
           <!--------------------------- CAMPO TELEMOVEL ------------------------------------>
-          <div class="form-group col-4">
+          <!-- <div class="form-group col-4">
             <label for="contacto_aluno">Telemóvel</label>
             <input type="text" name="contacto_aluno" class="form-control border-primary" id="contacto_aluno"
               value="<?= set_value('contacto_aluno'); ?>" autocomplete="off" />
             <?= form_error('contacto_aluno'); ?>
-          </div>
+          </div> -->
           <div class="form-group col-12">
             <strong>Os campos que contêm<b class="text-danger mx-2">*</b>são
               obrigatórios.</strong>
