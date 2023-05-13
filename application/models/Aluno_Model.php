@@ -26,7 +26,7 @@ class Aluno_Model extends CI_Model
             "tipo_documento"   =>$this->input->post('tipo_documento'),
             "num_documento"    =>$this->input->post('num_documento'),
 			"data_emissao_doc" =>$this->input->post('data_emissao_doc'),
-            "contacto_aluno"   =>$this->input->post('contacto_aluno'),
+            // "contacto_aluno"   =>$this->input->post('contacto_aluno'),
             "endereco_aluno"   =>$this->input->post('endereco_aluno'),
 			"nome_pai" 		   =>$this->input->post('nome_pai'),
 			"nome_mae" 		   =>$this->input->post('nome_mae'),

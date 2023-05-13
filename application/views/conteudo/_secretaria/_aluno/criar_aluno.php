@@ -10,13 +10,13 @@
     <form action="<?php echo site_url('secretaria/aluno/guardar')?>" method="POST" id="form_novo_aluno">
       <fieldset class="py-3">
         <div class="row">
-          <div class="form-group col-6">
+          <div class="form-group col-5">
             <label><b class="text-danger mr-1">*</b>Nome completo</label>
             <input type="text" name="nome" id="nome" class="form-control border-primary"
               placeholder="Digite o nome completo" value="<?= set_value('nome'); ?>" autocomplete="off" />
             <?= form_error('nome'); ?>
           </div>
-          <div class="form-group col-2">
+          <div class="form-group col-3">
             <label><b class="text-danger mr-1">*</b>Género</label>
             <select name="genero_aluno" class="form-control border-primary" id="genero_aluno">
               <option value="">Selecione o género</option>
