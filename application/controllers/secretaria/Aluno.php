@@ -80,11 +80,11 @@ class Aluno extends CI_Controller
 				'field' => 'nascimento_aluno',
 				'label' => 'data',
 				'rules' => ''
-			), array(
+			), /* array(
 				'field' => 'contacto_aluno',
 				'label' => 'telemóvel',
 				'rules' => 'trim|is_unique[aluno.contacto_aluno]'
-			), array(
+			), */ array(
 				'field' => 'tipo_documento',
 				'label' => 'tipo de documento',
 				'rules' => 'trim|required'
