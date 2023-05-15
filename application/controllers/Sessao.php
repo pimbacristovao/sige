@@ -19,7 +19,7 @@ class Sessao extends CI_Controller
 	/* ========== funcao login ========== */ 
     public function login()	
 	{
-		$nome_user = $this->input->post('nome_user',TRUE);
+		$nome_user = strtolower($this->input->post('nome_user',TRUE));
 		$password  = $this->input->post('password',TRUE);
 		$data = $this->Sessao_Model->validate($nome_user,$password);
 		if($data)

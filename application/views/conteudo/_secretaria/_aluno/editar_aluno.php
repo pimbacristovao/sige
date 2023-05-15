@@ -141,12 +141,12 @@
                         <input type="text" name="endereco_aluno" class="form-control border-primary" id="endereco_aluno"
                             value="<?= $aluno[0]->endereco_aluno; ?>" autocomplete="off" />
                     </div>
-                    <div class="form-group col-4">
+                    <!-- <div class="form-group col-4"> -->
                         <!--------------------------- TELEMOVEL ------------------------------------->
-                        <label for="contacto_aluno">Telemóvel</label>
+                        <!-- <label for="contacto_aluno">Telemóvel</label>
                         <input type="text" name="contacto_aluno" class="form-control border-primary" id="contacto_aluno"
                             value="<?= $aluno[0]->contacto_aluno; ?>" autocomplete="off" />
-                    </div>
+                    </div> -->
                     <div class="form-group col-12">
                         <strong>Os campos que contêm <b class="text-danger">*</b> são obrigatórios.</strong>
                     </div>

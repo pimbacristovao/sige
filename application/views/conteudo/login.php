@@ -28,7 +28,7 @@
                         <!-- input user name -->
                         <div class="form-group ">
                             <input type="text" name="nome_user" id="nome_user"
-                                class="form-control form-control-lg bg-transparent text-primary border-primary"
+                                class="form-control form-control-lg bg-transparent text-primary border-primary" onkeydown="return (event.keyCode !== 32);"
                                 placeholder="Nome de Utilizador" autocomplete="off" /><?= form_error('nome_user'); ?>
                         </div>
                         <!-- input passe-word -->
